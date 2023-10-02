@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.3">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.d451bc0e.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.79e020e9.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.a5377069.min.css">
@@ -6216,6 +6216,7 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
         <span class="bp">self</span><span class="o">.</span><span class="n">_xyz_dict</span> <span class="o">=</span> <span class="n">get_xyz_dict</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">baseclass</span> <span class="o">=</span> <span class="s2">&quot;ipyleaflet&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_USER_AGENT_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;geemap&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -8218,7 +8219,7 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 <span class="sd">            download (bool, optional): Whether to download the gif. Defaults to False.</span>
 <span class="sd">            apply_fmask (bool, optional): Whether to apply Fmask (Function of mask) for automated clouds, cloud shadows, snow, and water masking.</span>
 <span class="sd">            nd_bands (list, optional): A list of names specifying the bands to use, e.g., [&#39;Green&#39;, &#39;SWIR1&#39;]. The normalized difference is computed as (first − second) / (first + second). Note that negative input values are forced to 0 so that the result is confined to the range (-1, 1).</span>
-<span class="sd">            nd_threshold (float, optional): The threshold for extacting pixels from the normalized difference band.</span>
+<span class="sd">            nd_threshold (float, optional): The threshold for extracting pixels from the normalized difference band.</span>
 <span class="sd">            nd_palette (str, optional): The color palette to use for displaying the normalized difference band.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -11062,6 +11063,7 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
     <span class="bp">self</span><span class="o">.</span><span class="n">_xyz_dict</span> <span class="o">=</span> <span class="n">get_xyz_dict</span><span class="p">()</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">baseclass</span> <span class="o">=</span> <span class="s2">&quot;ipyleaflet&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_USER_AGENT_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;geemap&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -14270,7 +14272,7 @@ style_callback = lambda feat: {"fillColor": feat["properties"][&quot;color&quot;
       <tr>
         <td><code>nd_threshold</code></td>
         <td><code>float</code></td>
-        <td><p>The threshold for extacting pixels from the normalized difference band.</p></td>
+        <td><p>The threshold for extracting pixels from the normalized difference band.</p></td>
         <td><code>0</code></td>
       </tr>
       <tr>
@@ -14331,7 +14333,7 @@ style_callback = lambda feat: {"fillColor": feat["properties"][&quot;color&quot;
 <span class="sd">        download (bool, optional): Whether to download the gif. Defaults to False.</span>
 <span class="sd">        apply_fmask (bool, optional): Whether to apply Fmask (Function of mask) for automated clouds, cloud shadows, snow, and water masking.</span>
 <span class="sd">        nd_bands (list, optional): A list of names specifying the bands to use, e.g., [&#39;Green&#39;, &#39;SWIR1&#39;]. The normalized difference is computed as (first − second) / (first + second). Note that negative input values are forced to 0 so that the result is confined to the range (-1, 1).</span>
-<span class="sd">        nd_threshold (float, optional): The threshold for extacting pixels from the normalized difference band.</span>
+<span class="sd">        nd_threshold (float, optional): The threshold for extracting pixels from the normalized difference band.</span>
 <span class="sd">        nd_palette (str, optional): The color palette to use for displaying the normalized difference band.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -23929,10 +23931,10 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -24022,10 +24024,11 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
+    
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.726fbb30.min.js"></script>
+      <script src="../assets/javascripts/bundle.6eac0284.min.js"></script>
       
         <script src="../js/timeago.min.js"></script>
       
