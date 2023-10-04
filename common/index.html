@@ -2489,6 +2489,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#geemap.common.open_url" class="md-nav__link">
+    open_url()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#geemap.common.open_youtube" class="md-nav__link">
     open_youtube()
   </a>
@@ -8364,6 +8371,13 @@
         <li class="md-nav__item">
   <a href="#geemap.common.open_image_from_url" class="md-nav__link">
     open_image_from_url()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.open_url" class="md-nav__link">
+    open_url()
   </a>
   
 </li>
@@ -37998,6 +38012,40 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
 
 
 
+<h2 id="geemap.common.open_url" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">open_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span></code>
+
+
+<a href="#geemap.common.open_url" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Opens the URL in a new browser tab.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>geemap/common.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">open_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Opens the URL in a new browser tab.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">in_colab_shell</span><span class="p">():</span>
+        <span class="n">display</span><span class="p">(</span>
+            <span class="n">Javascript</span><span class="p">(</span><span class="s1">&#39;window.open(&quot;</span><span class="si">{url}</span><span class="s1">&quot;, &quot;_blank&quot;, &quot;noopener&quot;)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">webbrowser</span>
+
+        <span class="n">webbrowser</span><span class="o">.</span><span class="n">open_new_tab</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h2 id="geemap.common.open_youtube" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">open_youtube</span><span class="p">()</span></code>
 
@@ -46002,32 +46050,32 @@ to uncompressed data.</p></td>
         <span class="n">SESSION</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
 
     <span class="n">xyz_tiles</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://</span><span class="si">{s}</span><span class="s2">.tile.openstreetmap.org/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">.png&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;ROADMAP&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldStreetMap&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;SATELLITE&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;TERRAIN&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldTopoMap&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;HYBRID&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-<span class="p">}</span>
+        <span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://</span><span class="si">{s}</span><span class="s2">.tile.openstreetmap.org/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">.png&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;ROADMAP&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldStreetMap&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;SATELLITE&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;TERRAIN&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldTopoMap&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;HYBRID&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attribution&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">}</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">source</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">xyz_tiles</span><span class="p">:</span>
         <span class="n">source</span> <span class="o">=</span> <span class="n">xyz_tiles</span><span class="p">[</span><span class="n">source</span><span class="o">.</span><span class="n">upper</span><span class="p">()][</span><span class="s2">&quot;url&quot;</span><span class="p">]</span>
