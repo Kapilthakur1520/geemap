@@ -5619,7 +5619,7 @@
 
 
 <h2 id="geemap.timelapse.create_timelapse" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">create_timelapse</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_gif</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vis_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="mi">768</span><span class="p">,</span> <span class="n">frames_per_second</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">,</span> <span class="n">overlay_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">overlay_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">overlay_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">overlay_opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title_xy</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2%&#39;</span><span class="p">,</span> <span class="s1">&#39;90%&#39;</span><span class="p">),</span> <span class="n">add_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text_xy</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2%&#39;</span><span class="p">,</span> <span class="s1">&#39;2%&#39;</span><span class="p">),</span> <span class="n">text_sequence</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">font_type</span><span class="o">=</span><span class="s1">&#39;arial.ttf&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">font_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">add_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">progress_bar_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">progress_bar_height</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colorbar_width</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">colorbar_height</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">colorbar_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colorbar_label_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">colorbar_label_weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">colorbar_tick_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">colorbar_bg_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colorbar_orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">colorbar_dpi</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">colorbar_xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colorbar_size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">loop</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mp4</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fading</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">create_timelapse</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_gif</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vis_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="mi">768</span><span class="p">,</span> <span class="n">frames_per_second</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">,</span> <span class="n">overlay_data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">overlay_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">overlay_width</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">overlay_opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">title_xy</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2%&#39;</span><span class="p">,</span> <span class="s1">&#39;90%&#39;</span><span class="p">),</span> <span class="n">add_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text_xy</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2%&#39;</span><span class="p">,</span> <span class="s1">&#39;2%&#39;</span><span class="p">),</span> <span class="n">text_sequence</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">font_type</span><span class="o">=</span><span class="s1">&#39;arial.ttf&#39;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">font_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">add_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">progress_bar_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">progress_bar_height</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">add_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colorbar_width</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">colorbar_height</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">colorbar_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colorbar_label_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">colorbar_label_weight</span><span class="o">=</span><span class="s1">&#39;normal&#39;</span><span class="p">,</span> <span class="n">colorbar_tick_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">colorbar_bg_color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colorbar_orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">colorbar_dpi</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">colorbar_xy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colorbar_size</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="n">loop</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mp4</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fading</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
 
 <a href="#geemap.timelapse.create_timelapse" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -5909,6 +5909,12 @@
         <td><p>If True, add fading effect to the timelapse. Defaults to False, no fading. To add fading effect, set it to True (1 second fading duration) or to an integer value (fading duration).</p></td>
         <td><code>False</code></td>
       </tr>
+      <tr>
+        <td><code>parallel_scale</code></td>
+        <td><code>int</code></td>
+        <td><p>A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
   </tbody>
 </table>
 <p><strong>Returns:</strong></p>
@@ -5973,6 +5979,7 @@
     <span class="n">loop</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">mp4</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">fading</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a timelapse from any ee.ImageCollection.</span>
 
@@ -6022,6 +6029,7 @@
 <span class="sd">        loop (int, optional): Controls how many times the animation repeats. The default, 1, means that the animation will play once and then stop (displaying the last frame). A value of 0 means that the animation will repeat forever. Defaults to 0.</span>
 <span class="sd">        mp4 (bool, optional): Whether to create an mp4 file. Defaults to False.</span>
 <span class="sd">        fading (int | bool, optional): If True, add fading effect to the timelapse. Defaults to False, no fading. To add fading effect, set it to True (1 second fading duration) or to an integer value (fading duration).</span>
+<span class="sd">        parallel_scale (int, optional): A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        str: File path to the timelapse gif.</span>
@@ -6046,6 +6054,7 @@
         <span class="n">reducer</span><span class="o">=</span><span class="n">reducer</span><span class="p">,</span>
         <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
+        <span class="n">parallel_scale</span><span class="o">=</span><span class="n">parallel_scale</span>
     <span class="p">)</span>
 
     <span class="c1"># rename the bands to remove the &#39;_reducer&#39; characters from the band names.</span>
@@ -6267,7 +6276,7 @@
 
 
 <h2 id="geemap.timelapse.create_timeseries" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">create_timeseries</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">create_timeseries</span><span class="p">(</span><span class="n">collection</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
 
 <a href="#geemap.timelapse.create_timeseries" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -6341,6 +6350,12 @@
         <td><p>A pattern, as described at http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html. Defaults to 'YYYY-MM-dd'.</p></td>
         <td><code>None</code></td>
       </tr>
+      <tr>
+        <td><code>parallel_scale</code></td>
+        <td><code>int</code></td>
+        <td><p>A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
   </tbody>
 </table>
 <p><strong>Returns:</strong></p>
@@ -6370,6 +6385,7 @@
     <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span>
     <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a timeseries from a collection of images by a specified frequency and reducer.</span>
 
@@ -6383,6 +6399,7 @@
 <span class="sd">        reducer (str, optional):  The reducer to use to reduce the collection of images to a single value. It can be one of the following: &#39;median&#39;, &#39;mean&#39;, &#39;min&#39;, &#39;max&#39;, &#39;variance&#39;, &#39;sum&#39;. Defaults to &#39;median&#39;.</span>
 <span class="sd">        drop_empty (bool, optional): Whether to drop empty images from the timeseries. Defaults to True.</span>
 <span class="sd">        date_format (str, optional): A pattern, as described at http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html. Defaults to &#39;YYYY-MM-dd&#39;.</span>
+<span class="sd">        parallel_scale (int, optional): A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        ee.ImageCollection: The timeseries.</span>
@@ -6431,16 +6448,20 @@
 
         <span class="k">if</span> <span class="n">region</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">sub_col</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">sub_col</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">reducer</span><span class="p">)</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">sub_col</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">reducer</span><span class="p">,</span> <span class="n">parallel_scale</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">sub_col</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span><span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">sub_col</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">reducer</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Algorithms</span><span class="o">.</span><span class="n">If</span><span class="p">(</span>
+                <span class="n">ee</span><span class="o">.</span><span class="n">Algorithms</span><span class="o">.</span><span class="n">ObjectType</span><span class="p">(</span><span class="n">region</span><span class="p">)</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">&quot;FeatureCollection&quot;</span><span class="p">),</span>
+                <span class="n">sub_col</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">reducer</span><span class="p">,</span> <span class="n">parallel_scale</span><span class="p">)</span><span class="o">.</span><span class="n">clipToCollection</span><span class="p">(</span><span class="n">region</span><span class="p">),</span>
+                <span class="n">sub_col</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">reducer</span><span class="p">,</span> <span class="n">parallel_scale</span><span class="p">)</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
+            <span class="p">))</span>
         <span class="k">return</span> <span class="n">image</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
             <span class="p">{</span>
                 <span class="s2">&quot;system:time_start&quot;</span><span class="p">:</span> <span class="n">ee</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">date</span><span class="p">)</span><span class="o">.</span><span class="n">millis</span><span class="p">(),</span>
                 <span class="s2">&quot;system:date&quot;</span><span class="p">:</span> <span class="n">ee</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">date</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">date_format</span><span class="p">),</span>
-                <span class="s2">&quot;empty&quot;</span><span class="p">:</span> <span class="n">sub_col</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+                <span class="s2">&quot;empty&quot;</span><span class="p">:</span> <span class="n">sub_col</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">eq</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
             <span class="p">}</span>
         <span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>
 
@@ -6465,7 +6486,7 @@
 
 
 <h2 id="geemap.timelapse.dynamic_world_timeseries" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">dynamic_world_timeseries</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s1">&#39;2016-01-01&#39;</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;2021-12-31&#39;</span><span class="p">,</span> <span class="n">cloud_pct</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;hillshade&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">dynamic_world_timeseries</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s1">&#39;2016-01-01&#39;</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;2021-12-31&#39;</span><span class="p">,</span> <span class="n">cloud_pct</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;hillshade&#39;</span><span class="p">,</span> <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
 
 <a href="#geemap.timelapse.dynamic_world_timeseries" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -6539,6 +6560,12 @@
         <td><p>The type of image to be returned. Can be one of 'hillshade', 'visualize', 'class', or 'probability'. Default to "hillshade".</p></td>
         <td><code>&#39;hillshade&#39;</code></td>
       </tr>
+      <tr>
+        <td><code>parallel_scale</code></td>
+        <td><code>int</code></td>
+        <td><p>A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
   </tbody>
 </table>
 <p><strong>Returns:</strong></p>
@@ -6568,6 +6595,7 @@
     <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;hillshade&quot;</span><span class="p">,</span>
+    <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create Dynamic World timeseries.</span>
 
@@ -6581,6 +6609,7 @@
 <span class="sd">        drop_empty (bool, optional): Whether to drop empty images from the timeseries. Defaults to True.</span>
 <span class="sd">        date_format (str, optional): A pattern, as described at http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html. Defaults to &#39;YYYY-MM-dd&#39;.</span>
 <span class="sd">        return_type (str, optional): The type of image to be returned. Can be one of &#39;hillshade&#39;, &#39;visualize&#39;, &#39;class&#39;, or &#39;probability&#39;. Default to &quot;hillshade&quot;.</span>
+<span class="sd">        parallel_scale (int, optional): A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        ee.ImageCollection: An ImageCollection of the Dynamic World land cover timeseries.</span>
@@ -6645,6 +6674,7 @@
         <span class="n">reducer</span><span class="p">,</span>
         <span class="n">drop_empty</span><span class="p">,</span>
         <span class="n">date_format</span><span class="p">,</span>
+        <span class="n">parallel_scale</span>
     <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">return_type</span> <span class="o">==</span> <span class="s2">&quot;class&quot;</span><span class="p">:</span>
@@ -6679,6 +6709,7 @@
             <span class="s2">&quot;mean&quot;</span><span class="p">,</span>
             <span class="n">drop_empty</span><span class="p">,</span>
             <span class="n">date_format</span><span class="p">,</span>
+            <span class="n">parallel_scale</span>
         <span class="p">)</span>
 
         <span class="n">prob_images</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span>
@@ -11589,7 +11620,7 @@ Credits to Justin Braaten. See also https://jstnbraaten.medium.com/goes-in-earth
 
 
 <h2 id="geemap.timelapse.modis_ocean_color_timeseries" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">modis_ocean_color_timeseries</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">modis_ocean_color_timeseries</span><span class="p">(</span><span class="n">satellite</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
 
 <a href="#geemap.timelapse.modis_ocean_color_timeseries" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -11663,6 +11694,12 @@ Credits to Justin Braaten. See also https://jstnbraaten.medium.com/goes-in-earth
         <td><p>A pattern, as described at http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html. Defaults to 'YYYY-MM-dd'.</p></td>
         <td><code>None</code></td>
       </tr>
+      <tr>
+        <td><code>parallel_scale</code></td>
+        <td><code>int</code></td>
+        <td><p>A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
   </tbody>
 </table>
 <p><strong>Returns:</strong></p>
@@ -11692,6 +11729,7 @@ Credits to Justin Braaten. See also https://jstnbraaten.medium.com/goes-in-earth
     <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span>
     <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Creates a ocean color timeseries from MODIS. https://developers.google.com/earth-engine/datasets/catalog/NASA_OCEANDATA_MODIS-Aqua_L3SMI</span>
 
@@ -11705,6 +11743,7 @@ Credits to Justin Braaten. See also https://jstnbraaten.medium.com/goes-in-earth
 <span class="sd">        reducer (str, optional):  The reducer to use to reduce the collection of images to a single value. It can be one of the following: &#39;median&#39;, &#39;mean&#39;, &#39;min&#39;, &#39;max&#39;, &#39;variance&#39;, &#39;sum&#39;. Defaults to &#39;median&#39;.</span>
 <span class="sd">        drop_empty (bool, optional): Whether to drop empty images from the timeseries. Defaults to True.</span>
 <span class="sd">        date_format (str, optional): A pattern, as described at http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html. Defaults to &#39;YYYY-MM-dd&#39;.</span>
+<span class="sd">        parallel_scale (int, optional): A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        ee.ImageCollection: The timeseries.</span>
@@ -11739,6 +11778,7 @@ Credits to Justin Braaten. See also https://jstnbraaten.medium.com/goes-in-earth
         <span class="n">reducer</span><span class="p">,</span>
         <span class="n">drop_empty</span><span class="p">,</span>
         <span class="n">date_format</span><span class="p">,</span>
+        <span class="n">parallel_scale</span>
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">ts</span>
@@ -14111,6 +14151,8 @@ based on mean composites following a steady frequency (f.e. 1 image per month)
             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;reducer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;median&quot;</span>
         <span class="k">if</span> <span class="s2">&quot;drop_empty&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;drop_empty&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="s2">&quot;parallel_scale&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;parallel_scale&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;date_format&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">date_format</span>
         <span class="n">col</span> <span class="o">=</span> <span class="n">sentinel2_timeseries</span><span class="p">(</span>
             <span class="n">roi</span><span class="p">,</span>
@@ -14245,7 +14287,7 @@ based on mean composites following a steady frequency (f.e. 1 image per month)
 
 
 <h2 id="geemap.timelapse.sentinel2_timeseries" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">sentinel2_timeseries</span><span class="p">(</span><span class="n">roi</span><span class="p">,</span> <span class="n">start_year</span><span class="o">=</span><span class="mi">2015</span><span class="p">,</span> <span class="n">end_year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s1">&#39;01-01&#39;</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;12-31&#39;</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask_cloud</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cloud_pct</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">sentinel2_timeseries</span><span class="p">(</span><span class="n">roi</span><span class="p">,</span> <span class="n">start_year</span><span class="o">=</span><span class="mi">2015</span><span class="p">,</span> <span class="n">end_year</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s1">&#39;01-01&#39;</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;12-31&#39;</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask_cloud</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cloud_pct</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">reducer</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
 
 
 <a href="#geemap.timelapse.sentinel2_timeseries" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -14338,6 +14380,12 @@ based on mean composites following a steady frequency (f.e. 1 image per month)
         <td><p>Format of the date. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
+      <tr>
+        <td><code>parallel_scale</code></td>
+        <td><code>int</code></td>
+        <td><p>A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</p></td>
+        <td><code>1</code></td>
+      </tr>
   </tbody>
 </table>
 <p><strong>Returns:</strong></p>
@@ -14370,6 +14418,7 @@ based on mean composites following a steady frequency (f.e. 1 image per month)
     <span class="n">reducer</span><span class="o">=</span><span class="s2">&quot;median&quot;</span><span class="p">,</span>
     <span class="n">drop_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">date_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">parallel_scale</span><span class="o">=</span><span class="mi">1</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates an annual Sentinel 2 ImageCollection. This algorithm is adapted from https://gist.github.com/jdbcode/76b9ac49faf51627ebd3ff988e10adbc. A huge thank you to Justin Braaten for sharing his fantastic work.</span>
 <span class="sd">       Images include both level 1C and level 2A imagery.</span>
@@ -14387,6 +14436,7 @@ based on mean composites following a steady frequency (f.e. 1 image per month)
 <span class="sd">        reducer (str, optional):  The reducer to use to reduce the collection of images to a single value. It can be one of the following: &#39;median&#39;, &#39;mean&#39;, &#39;min&#39;, &#39;max&#39;, &#39;variance&#39;, &#39;sum&#39;. Defaults to &#39;median&#39;.</span>
 <span class="sd">        drop_empty (bool, optional): Whether to drop empty images from the timeseries. Defaults to True.</span>
 <span class="sd">        date_format (str, optional): Format of the date. Defaults to None.</span>
+<span class="sd">        parallel_scale (int, optional): A scaling factor used to limit memory use; using a larger parallel_scale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        object: Returns an ImageCollection containing annual Sentinel 2 images.</span>
@@ -14451,7 +14501,7 @@ based on mean composites following a steady frequency (f.e. 1 image per month)
         <span class="n">collection</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">bands</span><span class="p">)</span>
 
     <span class="n">ts</span> <span class="o">=</span> <span class="n">create_timeseries</span><span class="p">(</span>
-        <span class="n">collection</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">roi</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">reducer</span><span class="p">,</span> <span class="n">drop_empty</span><span class="p">,</span> <span class="n">date_format</span>
+        <span class="n">collection</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">roi</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">frequency</span><span class="p">,</span> <span class="n">reducer</span><span class="p">,</span> <span class="n">drop_empty</span><span class="p">,</span> <span class="n">date_format</span><span class="p">,</span> <span class="n">parallel_scale</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">ts</span>
 </code></pre></div>
