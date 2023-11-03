@@ -10927,6 +10927,7 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
         <span class="n">crs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;EPSG:3857&quot;</span><span class="p">,</span>
         <span class="n">scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">region</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">vis_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -10938,6 +10939,7 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 <span class="sd">            crs (str, optional): The coordinate reference system (CRS) of the output image. Defaults to &quot;EPSG:3857&quot;.</span>
 <span class="sd">            scale (int, optional): The scale of the output image. Defaults to None.</span>
 <span class="sd">            region (ee.Geometry, optional): The region of interest for the conversion. Defaults to None.</span>
+<span class="sd">            vis_params (dict, optional): The visualization parameters. Defaults to None.</span>
 <span class="sd">            **kwargs: Additional keyword arguments to pass to the `download_ee_image` function.</span>
 
 <span class="sd">        Returns:</span>
@@ -10960,7 +10962,9 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 
         <span class="n">layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ee_layers</span><span class="p">[</span><span class="n">layer_name</span><span class="p">]</span>
         <span class="n">ee_object</span> <span class="o">=</span> <span class="n">layer</span><span class="p">[</span><span class="s2">&quot;ee_object&quot;</span><span class="p">]</span>
-        <span class="n">vis_params</span> <span class="o">=</span> <span class="n">layer</span><span class="p">[</span><span class="s2">&quot;vis_params&quot;</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">vis_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">vis_params</span> <span class="o">=</span> <span class="n">layer</span><span class="p">[</span><span class="s2">&quot;vis_params&quot;</span><span class="p">]</span>
 
         <span class="n">image</span> <span class="o">=</span> <span class="n">ee_object</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="o">**</span><span class="n">vis_params</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">output</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tif&quot;</span><span class="p">):</span>
@@ -20690,7 +20694,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 
 
 <h3 id="geemap.geemap.Map.layer_to_image" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">layer_to_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">layer_to_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vis_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#geemap.geemap.Map.layer_to_image" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -20741,6 +20745,12 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
         <td><code>None</code></td>
       </tr>
       <tr>
+        <td><code>vis_params</code></td>
+        <td><code>dict</code></td>
+        <td><p>The visualization parameters. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
         <td><code>**kwargs</code></td>
         <td><code>Any</code></td>
         <td><p>Additional keyword arguments to pass to the <code>download_ee_image</code> function.</p></td>
@@ -20772,6 +20782,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
     <span class="n">crs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;EPSG:3857&quot;</span><span class="p">,</span>
     <span class="n">scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">region</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">vis_params</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -20783,6 +20794,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 <span class="sd">        crs (str, optional): The coordinate reference system (CRS) of the output image. Defaults to &quot;EPSG:3857&quot;.</span>
 <span class="sd">        scale (int, optional): The scale of the output image. Defaults to None.</span>
 <span class="sd">        region (ee.Geometry, optional): The region of interest for the conversion. Defaults to None.</span>
+<span class="sd">        vis_params (dict, optional): The visualization parameters. Defaults to None.</span>
 <span class="sd">        **kwargs: Additional keyword arguments to pass to the `download_ee_image` function.</span>
 
 <span class="sd">    Returns:</span>
@@ -20805,7 +20817,9 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 
     <span class="n">layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ee_layers</span><span class="p">[</span><span class="n">layer_name</span><span class="p">]</span>
     <span class="n">ee_object</span> <span class="o">=</span> <span class="n">layer</span><span class="p">[</span><span class="s2">&quot;ee_object&quot;</span><span class="p">]</span>
-    <span class="n">vis_params</span> <span class="o">=</span> <span class="n">layer</span><span class="p">[</span><span class="s2">&quot;vis_params&quot;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">vis_params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">vis_params</span> <span class="o">=</span> <span class="n">layer</span><span class="p">[</span><span class="s2">&quot;vis_params&quot;</span><span class="p">]</span>
 
     <span class="n">image</span> <span class="o">=</span> <span class="n">ee_object</span><span class="o">.</span><span class="n">visualize</span><span class="p">(</span><span class="o">**</span><span class="n">vis_params</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">output</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tif&quot;</span><span class="p">):</span>
