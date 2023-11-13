@@ -34956,7 +34956,7 @@ Default to ee.ImageCollection('JRC/GSW1_4/MonthlyHistory')</p></td>
 
     <div class="doc doc-contents ">
 
-      <p>Converts a KML to ee.FeatureColleciton.</p>
+      <p>Converts a KML to ee.FeatureCollection.</p>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -35010,7 +35010,7 @@ Default to ee.ImageCollection('JRC/GSW1_4/MonthlyHistory')</p></td>
         <details class="quote">
           <summary>Source code in <code>geemap/common.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kml_to_ee</span><span class="p">(</span><span class="n">in_kml</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a KML to ee.FeatureColleciton.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a KML to ee.FeatureCollection.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        in_kml (str): The file path to the input KML.</span>
@@ -35269,7 +35269,7 @@ Default to ee.ImageCollection('JRC/GSW1_4/MonthlyHistory')</p></td>
 
     <div class="doc doc-contents ">
 
-      <p>Converts a KMZ to ee.FeatureColleciton.</p>
+      <p>Converts a KMZ to ee.FeatureCollection.</p>
 
 <p><strong>Parameters:</strong></p>
 <table>
@@ -35323,7 +35323,7 @@ Default to ee.ImageCollection('JRC/GSW1_4/MonthlyHistory')</p></td>
         <details class="quote">
           <summary>Source code in <code>geemap/common.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">kmz_to_ee</span><span class="p">(</span><span class="n">in_kmz</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a KMZ to ee.FeatureColleciton.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a KMZ to ee.FeatureCollection.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        in_kmz (str): The file path to the input KMZ.</span>
@@ -35534,7 +35534,7 @@ Default to ee.ImageCollection('JRC/GSW1_4/MonthlyHistory')</p></td>
   </thead>
   <tbody>
     <tr>
-      <td><code>ee.FeatureColleciton</code></td>
+      <td><code>ee.FeatureCollection</code></td>
       <td><p>A feature collection of latitude grids.</p></td>
     </tr>
   </tbody>
@@ -35552,7 +35552,7 @@ Default to ee.ImageCollection('JRC/GSW1_4/MonthlyHistory')</p></td>
 <span class="sd">        north (int, optional): The north boundary in degrees. Defaults to 85.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        ee.FeatureColleciton: A feature collection of latitude grids.</span>
+<span class="sd">        ee.FeatureCollection: A feature collection of latitude grids.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">values</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">List</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="n">south</span><span class="p">,</span> <span class="n">north</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
 
@@ -36651,7 +36651,7 @@ Option 3: https://storage.cloud.google.com/gcp-public-data-landsat/LC08/01/044/0
   </thead>
   <tbody>
     <tr>
-      <td><code>ee.FeatureColleciton</code></td>
+      <td><code>ee.FeatureCollection</code></td>
       <td><p>A feature collection of longitude grids.</p></td>
     </tr>
   </tbody>
@@ -36669,7 +36669,7 @@ Option 3: https://storage.cloud.google.com/gcp-public-data-landsat/LC08/01/044/0
 <span class="sd">        north (int, optional): The north boundary in degrees. Defaults to 85.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        ee.FeatureColleciton: A feature collection of longitude grids.</span>
+<span class="sd">        ee.FeatureCollection: A feature collection of longitude grids.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">values</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">List</span><span class="o">.</span><span class="n">sequence</span><span class="p">(</span><span class="n">west</span><span class="p">,</span> <span class="n">east</span> <span class="o">-</span> <span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
@@ -42322,7 +42322,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
       <tr>
         <td><code>in_band_names</code></td>
         <td><code>list</code></td>
-        <td><p>The list of of input band names.</p></td>
+        <td><p>The list of input band names.</p></td>
         <td><em>required</em></td>
       </tr>
       <tr>
@@ -42355,7 +42355,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
 
 <span class="sd">    Args:</span>
 <span class="sd">        img (object): The image to be renamed.</span>
-<span class="sd">        in_band_names (list): The list of of input band names.</span>
+<span class="sd">        in_band_names (list): The list of input band names.</span>
 <span class="sd">        out_band_names (list): The list of output band names.</span>
 
 <span class="sd">    Returns:</span>
