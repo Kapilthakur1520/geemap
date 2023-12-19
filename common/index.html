@@ -26025,9 +26025,7 @@ which is the bounding box of the Earth Engine object.</p></td>
 </table>
         <details class="quote">
           <summary>Source code in <code>geemap/common.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ee_to_numpy</span><span class="p">(</span>
-    <span class="n">ee_object</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-<span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">ee_to_numpy</span><span class="p">(</span><span class="n">ee_object</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bands</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extracts a rectangular region of pixels from an image into a numpy array.</span>
 
 <span class="sd">    Args:</span>
@@ -26044,10 +26042,10 @@ which is the bounding box of the Earth Engine object.</p></td>
     <span class="k">if</span> <span class="p">(</span><span class="n">region</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">scale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">):</span>
         <span class="n">ee_object</span> <span class="o">=</span> <span class="n">ee_object</span><span class="o">.</span><span class="n">clipToBoundsAndScale</span><span class="p">(</span><span class="n">geometry</span><span class="o">=</span><span class="n">region</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">)</span>
 
-    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;expression&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ee_object</span>
-    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;fileFormat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NUMPY_NDARRAY&#39;</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;expression&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ee_object</span>
+    <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;fileFormat&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;NUMPY_NDARRAY&quot;</span>
     <span class="k">if</span> <span class="n">bands</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;bandIds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bands</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;bandIds&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bands</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">struct_array</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">computePixels</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
@@ -49572,7 +49570,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 
 
 <h2 id="geemap.common.zonal_statistics" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">zonal_statistics</span><span class="p">(</span><span class="n">in_value_raster</span><span class="p">,</span> <span class="n">in_zone_vector</span><span class="p">,</span> <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">statistics_type</span><span class="o">=</span><span class="s1">&#39;MEAN&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">zonal_statistics</span><span class="p">(</span><span class="n">in_value_raster</span><span class="p">,</span> <span class="n">in_zone_vector</span><span class="p">,</span> <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stat_type</span><span class="o">=</span><span class="s1">&#39;MEAN&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#geemap.common.zonal_statistics" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -49611,9 +49609,9 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <td><code>None</code></td>
       </tr>
       <tr>
-        <td><code>statistics_type</code></td>
+        <td><code>stat_type</code></td>
         <td><code>str</code></td>
-        <td><p>Statistic type to be calculated. Defaults to 'MEAN'. For 'HIST', you can provide three parameters: max_buckets, min_bucket_width, and max_raw. For 'FIXED_HIST', you must provide three parameters: hist_min, hist_max, and hist_steps.</p></td>
+        <td><p>Statistical type to be calculated. Defaults to 'MEAN'. For 'HIST', you can provide three parameters: max_buckets, min_bucket_width, and max_raw. For 'FIXED_HIST', you must provide three parameters: hist_min, hist_max, and hist_steps.</p></td>
         <td><code>&#39;MEAN&#39;</code></td>
       </tr>
       <tr>
@@ -49666,7 +49664,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
     <span class="n">in_value_raster</span><span class="p">,</span>
     <span class="n">in_zone_vector</span><span class="p">,</span>
     <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">statistics_type</span><span class="o">=</span><span class="s2">&quot;MEAN&quot;</span><span class="p">,</span>
+    <span class="n">stat_type</span><span class="o">=</span><span class="s2">&quot;MEAN&quot;</span><span class="p">,</span>
     <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
@@ -49682,7 +49680,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 <span class="sd">        in_value_raster (object): An ee.Image or ee.ImageCollection that contains the values on which to calculate a statistic.</span>
 <span class="sd">        in_zone_vector (object): An ee.FeatureCollection that defines the zones.</span>
 <span class="sd">        out_file_path (str): Output file path that will contain the summary of the values in each zone. The file type can be: csv, shp, json, kml, kmz</span>
-<span class="sd">        statistics_type (str, optional): Statistic type to be calculated. Defaults to &#39;MEAN&#39;. For &#39;HIST&#39;, you can provide three parameters: max_buckets, min_bucket_width, and max_raw. For &#39;FIXED_HIST&#39;, you must provide three parameters: hist_min, hist_max, and hist_steps.</span>
+<span class="sd">        stat_type (str, optional): Statistical type to be calculated. Defaults to &#39;MEAN&#39;. For &#39;HIST&#39;, you can provide three parameters: max_buckets, min_bucket_width, and max_raw. For &#39;FIXED_HIST&#39;, you must provide three parameters: hist_min, hist_max, and hist_steps.</span>
 <span class="sd">        scale (float, optional): A nominal scale in meters of the projection to work in. Defaults to None.</span>
 <span class="sd">        crs (str, optional): The projection to work in. If unspecified, the projection of the image&#39;s first band is used. If specified in addition to scale, rescaled to the specified scale. Defaults to None.</span>
 <span class="sd">        tile_scale (float, optional): A scaling factor used to reduce aggregation tile size; using a larger tileScale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.0.</span>
@@ -49705,6 +49703,10 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 
     <span class="k">if</span> <span class="n">out_file_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">out_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;zonal_stats.csv&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;statistics_type&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">]</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
 
     <span class="n">allowed_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="s2">&quot;geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;kml&quot;</span><span class="p">,</span> <span class="s2">&quot;kmz&quot;</span><span class="p">,</span> <span class="s2">&quot;shp&quot;</span><span class="p">]</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">out_file_path</span><span class="p">)</span>
@@ -49738,20 +49740,21 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
     <span class="k">if</span> <span class="s2">&quot;max_raw&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="n">max_raw</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;max_raw&quot;</span><span class="p">]</span>
 
-    <span class="k">if</span> <span class="p">(</span>
-        <span class="n">statistics_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;FIXED_HIST&quot;</span>
-        <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_min&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_max&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_steps&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-    <span class="p">):</span>
-        <span class="n">hist_min</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_min&quot;</span><span class="p">]</span>
-        <span class="n">hist_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_max&quot;</span><span class="p">]</span>
-        <span class="n">hist_steps</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_steps&quot;</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">statistics_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;FIXED_HIST&quot;</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="s2">&quot;To use fixedHistogram, please provide these three parameters: hist_min, hist_max, and hist_steps.&quot;</span>
-        <span class="p">)</span>
-        <span class="k">return</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stat_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;FIXED_HIST&quot;</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_min&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_max&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_steps&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="p">):</span>
+            <span class="n">hist_min</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_min&quot;</span><span class="p">]</span>
+            <span class="n">hist_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_max&quot;</span><span class="p">]</span>
+            <span class="n">hist_steps</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_steps&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;FIXED_HIST&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;To use fixedHistogram, please provide these three parameters: hist_min, hist_max, and hist_steps.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span>
 
     <span class="n">allowed_statistics</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;COUNT&quot;</span><span class="p">:</span> <span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
@@ -49777,13 +49780,19 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <span class="p">),</span>
     <span class="p">}</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">statistics_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">allowed_statistics</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="s2">&quot;The statistics type must be one of the following: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">allowed_statistics</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stat_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">allowed_statistics</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;The statistics type must be one of the following: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">allowed_statistics</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+                <span class="p">)</span>
             <span class="p">)</span>
-        <span class="p">)</span>
-        <span class="k">return</span>
+            <span class="k">return</span>
+        <span class="n">reducer</span> <span class="o">=</span> <span class="n">allowed_statistics</span><span class="p">[</span><span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stat_type</span><span class="p">,</span> <span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="p">):</span>
+        <span class="n">reducer</span> <span class="o">=</span> <span class="n">stat_type</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;statistics_type must be either a string or ee.Reducer.&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">scale</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">scale</span> <span class="o">=</span> <span class="n">in_value_raster</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span><span class="o">.</span><span class="n">nominalScale</span><span class="p">()</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -49793,7 +49802,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computing statistics ...&quot;</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">in_value_raster</span><span class="o">.</span><span class="n">reduceRegions</span><span class="p">(</span>
             <span class="n">collection</span><span class="o">=</span><span class="n">in_zone_vector</span><span class="p">,</span>
-            <span class="n">reducer</span><span class="o">=</span><span class="n">allowed_statistics</span><span class="p">[</span><span class="n">statistics_type</span><span class="p">],</span>
+            <span class="n">reducer</span><span class="o">=</span><span class="n">reducer</span><span class="p">,</span>
             <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
             <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span>
             <span class="n">tileScale</span><span class="o">=</span><span class="n">tile_scale</span><span class="p">,</span>
@@ -49817,7 +49826,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 
 
 <h2 id="geemap.common.zonal_statistics_by_group" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">zonal_statistics_by_group</span><span class="p">(</span><span class="n">in_value_raster</span><span class="p">,</span> <span class="n">in_zone_vector</span><span class="p">,</span> <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">statistics_type</span><span class="o">=</span><span class="s1">&#39;SUM&#39;</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">denominator</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">best_effort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_pixels</span><span class="o">=</span><span class="mf">10000000.0</span><span class="p">,</span> <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">zonal_statistics_by_group</span><span class="p">(</span><span class="n">in_value_raster</span><span class="p">,</span> <span class="n">in_zone_vector</span><span class="p">,</span> <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stat_type</span><span class="o">=</span><span class="s1">&#39;SUM&#39;</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">denominator</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">best_effort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_pixels</span><span class="o">=</span><span class="mf">10000000.0</span><span class="p">,</span> <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#geemap.common.zonal_statistics_by_group" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -49856,7 +49865,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <td><code>None</code></td>
       </tr>
       <tr>
-        <td><code>statistics_type</code></td>
+        <td><code>stat_type</code></td>
         <td><code>str</code></td>
         <td><p>Can be either 'SUM' or 'PERCENTAGE' . Defaults to 'SUM'.</p></td>
         <td><code>&#39;SUM&#39;</code></td>
@@ -49941,7 +49950,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
     <span class="n">in_value_raster</span><span class="p">,</span>
     <span class="n">in_zone_vector</span><span class="p">,</span>
     <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">statistics_type</span><span class="o">=</span><span class="s2">&quot;SUM&quot;</span><span class="p">,</span>
+    <span class="n">stat_type</span><span class="o">=</span><span class="s2">&quot;SUM&quot;</span><span class="p">,</span>
     <span class="n">decimal_places</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">denominator</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
     <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -49962,7 +49971,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 <span class="sd">        in_value_raster (object): An integer Image that contains the values on which to calculate area/percentage.</span>
 <span class="sd">        in_zone_vector (object): An ee.FeatureCollection that defines the zones.</span>
 <span class="sd">        out_file_path (str): Output file path that will contain the summary of the values in each zone. The file type can be: csv, shp, json, kml, kmz</span>
-<span class="sd">        statistics_type (str, optional): Can be either &#39;SUM&#39; or &#39;PERCENTAGE&#39; . Defaults to &#39;SUM&#39;.</span>
+<span class="sd">        stat_type (str, optional): Can be either &#39;SUM&#39; or &#39;PERCENTAGE&#39; . Defaults to &#39;SUM&#39;.</span>
 <span class="sd">        decimal_places (int, optional): The number of decimal places to use. Defaults to 0.</span>
 <span class="sd">        denominator (float, optional): To convert area units (e.g., from square meters to square kilometers). Defaults to 1.0.</span>
 <span class="sd">        scale (float, optional): A nominal scale in meters of the projection to work in. Defaults to None.</span>
@@ -49987,6 +49996,10 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 
     <span class="k">if</span> <span class="n">out_file_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">out_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;zonal_stats_by_group.csv&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;statistics_type&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">]</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
 
     <span class="n">band_count</span> <span class="o">=</span> <span class="n">in_value_raster</span><span class="o">.</span><span class="n">bandNames</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
 
@@ -50026,7 +50039,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span>
 
     <span class="n">allowed_statistics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SUM&quot;</span><span class="p">,</span> <span class="s2">&quot;PERCENTAGE&quot;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">statistics_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">allowed_statistics</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">allowed_statistics</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span>
             <span class="s2">&quot;The statistics type can only be one of </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">allowed_statistics</span><span class="p">)</span>
@@ -50112,7 +50125,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
                     <span class="n">keys</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">keys</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">0</span>
                 <span class="p">)</span>
                 <span class="n">cls_value</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Algorithms</span><span class="o">.</span><span class="n">If</span><span class="p">(</span>
-                    <span class="n">ee</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">statistics_type</span><span class="p">)</span><span class="o">.</span><span class="n">compareTo</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="s2">&quot;SUM&quot;</span><span class="p">)),</span>
+                    <span class="n">ee</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">stat_type</span><span class="p">)</span><span class="o">.</span><span class="n">compareTo</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="s2">&quot;SUM&quot;</span><span class="p">)),</span>
                     <span class="n">ee</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">cls_value</span><span class="p">)</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">total_area</span><span class="p">)),</span>
                     <span class="n">cls_value</span><span class="p">,</span>
                 <span class="p">)</span>
@@ -50145,7 +50158,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 
 
 <h2 id="geemap.common.zonal_stats" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">zonal_stats</span><span class="p">(</span><span class="n">in_value_raster</span><span class="p">,</span> <span class="n">in_zone_vector</span><span class="p">,</span> <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">statistics_type</span><span class="o">=</span><span class="s1">&#39;MEAN&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">zonal_stats</span><span class="p">(</span><span class="n">in_value_raster</span><span class="p">,</span> <span class="n">in_zone_vector</span><span class="p">,</span> <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stat_type</span><span class="o">=</span><span class="s1">&#39;MEAN&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#geemap.common.zonal_stats" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -50184,9 +50197,9 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <td><code>None</code></td>
       </tr>
       <tr>
-        <td><code>statistics_type</code></td>
+        <td><code>stat_type</code></td>
         <td><code>str</code></td>
-        <td><p>Statistic type to be calculated. Defaults to 'MEAN'. For 'HIST', you can provide three parameters: max_buckets, min_bucket_width, and max_raw. For 'FIXED_HIST', you must provide three parameters: hist_min, hist_max, and hist_steps.</p></td>
+        <td><p>Statistical type to be calculated. Defaults to 'MEAN'. For 'HIST', you can provide three parameters: max_buckets, min_bucket_width, and max_raw. For 'FIXED_HIST', you must provide three parameters: hist_min, hist_max, and hist_steps.</p></td>
         <td><code>&#39;MEAN&#39;</code></td>
       </tr>
       <tr>
@@ -50239,7 +50252,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
     <span class="n">in_value_raster</span><span class="p">,</span>
     <span class="n">in_zone_vector</span><span class="p">,</span>
     <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">statistics_type</span><span class="o">=</span><span class="s2">&quot;MEAN&quot;</span><span class="p">,</span>
+    <span class="n">stat_type</span><span class="o">=</span><span class="s2">&quot;MEAN&quot;</span><span class="p">,</span>
     <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
@@ -50255,7 +50268,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 <span class="sd">        in_value_raster (object): An ee.Image or ee.ImageCollection that contains the values on which to calculate a statistic.</span>
 <span class="sd">        in_zone_vector (object): An ee.FeatureCollection that defines the zones.</span>
 <span class="sd">        out_file_path (str): Output file path that will contain the summary of the values in each zone. The file type can be: csv, shp, json, kml, kmz</span>
-<span class="sd">        statistics_type (str, optional): Statistic type to be calculated. Defaults to &#39;MEAN&#39;. For &#39;HIST&#39;, you can provide three parameters: max_buckets, min_bucket_width, and max_raw. For &#39;FIXED_HIST&#39;, you must provide three parameters: hist_min, hist_max, and hist_steps.</span>
+<span class="sd">        stat_type (str, optional): Statistical type to be calculated. Defaults to &#39;MEAN&#39;. For &#39;HIST&#39;, you can provide three parameters: max_buckets, min_bucket_width, and max_raw. For &#39;FIXED_HIST&#39;, you must provide three parameters: hist_min, hist_max, and hist_steps.</span>
 <span class="sd">        scale (float, optional): A nominal scale in meters of the projection to work in. Defaults to None.</span>
 <span class="sd">        crs (str, optional): The projection to work in. If unspecified, the projection of the image&#39;s first band is used. If specified in addition to scale, rescaled to the specified scale. Defaults to None.</span>
 <span class="sd">        tile_scale (float, optional): A scaling factor used to reduce aggregation tile size; using a larger tileScale (e.g. 2 or 4) may enable computations that run out of memory with the default. Defaults to 1.0.</span>
@@ -50278,6 +50291,10 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 
     <span class="k">if</span> <span class="n">out_file_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">out_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;zonal_stats.csv&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;statistics_type&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">]</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
 
     <span class="n">allowed_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="s2">&quot;geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;kml&quot;</span><span class="p">,</span> <span class="s2">&quot;kmz&quot;</span><span class="p">,</span> <span class="s2">&quot;shp&quot;</span><span class="p">]</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">out_file_path</span><span class="p">)</span>
@@ -50311,20 +50328,21 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
     <span class="k">if</span> <span class="s2">&quot;max_raw&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="n">max_raw</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;max_raw&quot;</span><span class="p">]</span>
 
-    <span class="k">if</span> <span class="p">(</span>
-        <span class="n">statistics_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;FIXED_HIST&quot;</span>
-        <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_min&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_max&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_steps&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-    <span class="p">):</span>
-        <span class="n">hist_min</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_min&quot;</span><span class="p">]</span>
-        <span class="n">hist_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_max&quot;</span><span class="p">]</span>
-        <span class="n">hist_steps</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_steps&quot;</span><span class="p">]</span>
-    <span class="k">elif</span> <span class="n">statistics_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;FIXED_HIST&quot;</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="s2">&quot;To use fixedHistogram, please provide these three parameters: hist_min, hist_max, and hist_steps.&quot;</span>
-        <span class="p">)</span>
-        <span class="k">return</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stat_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;FIXED_HIST&quot;</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_min&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_max&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;hist_steps&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="p">):</span>
+            <span class="n">hist_min</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_min&quot;</span><span class="p">]</span>
+            <span class="n">hist_max</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_max&quot;</span><span class="p">]</span>
+            <span class="n">hist_steps</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;hist_steps&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;FIXED_HIST&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;To use fixedHistogram, please provide these three parameters: hist_min, hist_max, and hist_steps.&quot;</span>
+            <span class="p">)</span>
+            <span class="k">return</span>
 
     <span class="n">allowed_statistics</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;COUNT&quot;</span><span class="p">:</span> <span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span>
@@ -50350,13 +50368,19 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <span class="p">),</span>
     <span class="p">}</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">statistics_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">allowed_statistics</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-        <span class="nb">print</span><span class="p">(</span>
-            <span class="s2">&quot;The statistics type must be one of the following: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">allowed_statistics</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stat_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">allowed_statistics</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="nb">print</span><span class="p">(</span>
+                <span class="s2">&quot;The statistics type must be one of the following: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">allowed_statistics</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+                <span class="p">)</span>
             <span class="p">)</span>
-        <span class="p">)</span>
-        <span class="k">return</span>
+            <span class="k">return</span>
+        <span class="n">reducer</span> <span class="o">=</span> <span class="n">allowed_statistics</span><span class="p">[</span><span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stat_type</span><span class="p">,</span> <span class="n">ee</span><span class="o">.</span><span class="n">Reducer</span><span class="p">):</span>
+        <span class="n">reducer</span> <span class="o">=</span> <span class="n">stat_type</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;statistics_type must be either a string or ee.Reducer.&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">scale</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">scale</span> <span class="o">=</span> <span class="n">in_value_raster</span><span class="o">.</span><span class="n">projection</span><span class="p">()</span><span class="o">.</span><span class="n">nominalScale</span><span class="p">()</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -50366,7 +50390,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Computing statistics ...&quot;</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">in_value_raster</span><span class="o">.</span><span class="n">reduceRegions</span><span class="p">(</span>
             <span class="n">collection</span><span class="o">=</span><span class="n">in_zone_vector</span><span class="p">,</span>
-            <span class="n">reducer</span><span class="o">=</span><span class="n">allowed_statistics</span><span class="p">[</span><span class="n">statistics_type</span><span class="p">],</span>
+            <span class="n">reducer</span><span class="o">=</span><span class="n">reducer</span><span class="p">,</span>
             <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
             <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span>
             <span class="n">tileScale</span><span class="o">=</span><span class="n">tile_scale</span><span class="p">,</span>
@@ -50390,7 +50414,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 
 
 <h2 id="geemap.common.zonal_stats_by_group" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">zonal_stats_by_group</span><span class="p">(</span><span class="n">in_value_raster</span><span class="p">,</span> <span class="n">in_zone_vector</span><span class="p">,</span> <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">statistics_type</span><span class="o">=</span><span class="s1">&#39;SUM&#39;</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">denominator</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">best_effort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_pixels</span><span class="o">=</span><span class="mf">10000000.0</span><span class="p">,</span> <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">zonal_stats_by_group</span><span class="p">(</span><span class="n">in_value_raster</span><span class="p">,</span> <span class="n">in_zone_vector</span><span class="p">,</span> <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stat_type</span><span class="o">=</span><span class="s1">&#39;SUM&#39;</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">denominator</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">best_effort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_pixels</span><span class="o">=</span><span class="mf">10000000.0</span><span class="p">,</span> <span class="n">tile_scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">return_fc</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#geemap.common.zonal_stats_by_group" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -50429,7 +50453,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <td><code>None</code></td>
       </tr>
       <tr>
-        <td><code>statistics_type</code></td>
+        <td><code>stat_type</code></td>
         <td><code>str</code></td>
         <td><p>Can be either 'SUM' or 'PERCENTAGE' . Defaults to 'SUM'.</p></td>
         <td><code>&#39;SUM&#39;</code></td>
@@ -50514,7 +50538,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
     <span class="n">in_value_raster</span><span class="p">,</span>
     <span class="n">in_zone_vector</span><span class="p">,</span>
     <span class="n">out_file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">statistics_type</span><span class="o">=</span><span class="s2">&quot;SUM&quot;</span><span class="p">,</span>
+    <span class="n">stat_type</span><span class="o">=</span><span class="s2">&quot;SUM&quot;</span><span class="p">,</span>
     <span class="n">decimal_places</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">denominator</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
     <span class="n">scale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -50535,7 +50559,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 <span class="sd">        in_value_raster (object): An integer Image that contains the values on which to calculate area/percentage.</span>
 <span class="sd">        in_zone_vector (object): An ee.FeatureCollection that defines the zones.</span>
 <span class="sd">        out_file_path (str): Output file path that will contain the summary of the values in each zone. The file type can be: csv, shp, json, kml, kmz</span>
-<span class="sd">        statistics_type (str, optional): Can be either &#39;SUM&#39; or &#39;PERCENTAGE&#39; . Defaults to &#39;SUM&#39;.</span>
+<span class="sd">        stat_type (str, optional): Can be either &#39;SUM&#39; or &#39;PERCENTAGE&#39; . Defaults to &#39;SUM&#39;.</span>
 <span class="sd">        decimal_places (int, optional): The number of decimal places to use. Defaults to 0.</span>
 <span class="sd">        denominator (float, optional): To convert area units (e.g., from square meters to square kilometers). Defaults to 1.0.</span>
 <span class="sd">        scale (float, optional): A nominal scale in meters of the projection to work in. Defaults to None.</span>
@@ -50560,6 +50584,10 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 
     <span class="k">if</span> <span class="n">out_file_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">out_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;zonal_stats_by_group.csv&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;statistics_type&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">]</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
 
     <span class="n">band_count</span> <span class="o">=</span> <span class="n">in_value_raster</span><span class="o">.</span><span class="n">bandNames</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
 
@@ -50599,7 +50627,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span>
 
     <span class="n">allowed_statistics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SUM&quot;</span><span class="p">,</span> <span class="s2">&quot;PERCENTAGE&quot;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">statistics_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">allowed_statistics</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">stat_type</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">allowed_statistics</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span>
             <span class="s2">&quot;The statistics type can only be one of </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">allowed_statistics</span><span class="p">)</span>
@@ -50685,7 +50713,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
                     <span class="n">keys</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">values</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">keys</span><span class="o">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="mi">0</span>
                 <span class="p">)</span>
                 <span class="n">cls_value</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Algorithms</span><span class="o">.</span><span class="n">If</span><span class="p">(</span>
-                    <span class="n">ee</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">statistics_type</span><span class="p">)</span><span class="o">.</span><span class="n">compareTo</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="s2">&quot;SUM&quot;</span><span class="p">)),</span>
+                    <span class="n">ee</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="n">stat_type</span><span class="p">)</span><span class="o">.</span><span class="n">compareTo</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="s2">&quot;SUM&quot;</span><span class="p">)),</span>
                     <span class="n">ee</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">cls_value</span><span class="p">)</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">Number</span><span class="p">(</span><span class="n">total_area</span><span class="p">)),</span>
                     <span class="n">cls_value</span><span class="p">,</span>
                 <span class="p">)</span>
