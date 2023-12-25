@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
@@ -1130,15 +1130,6 @@
   <a href="#geemap.foliumap.Map.add_legend" class="md-nav__link">
     <span class="md-ellipsis">
       add_legend()
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geemap.foliumap.Map.add_local_tile" class="md-nav__link">
-    <span class="md-ellipsis">
-      add_local_tile()
     </span>
   </a>
   
@@ -5278,6 +5269,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/141_image_array_viz/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    141 image array viz
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5532,15 +5544,6 @@
   <a href="#geemap.foliumap.Map.add_legend" class="md-nav__link">
     <span class="md-ellipsis">
       add_legend()
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#geemap.foliumap.Map.add_local_tile" class="md-nav__link">
-    <span class="md-ellipsis">
-      add_local_tile()
     </span>
   </a>
   
@@ -6911,7 +6914,6 @@ Map            (<span title="folium.folium.Map">Map</span>)
         <span class="n">arc_add_layer</span><span class="p">(</span><span class="n">tile_layer</span><span class="o">.</span><span class="n">tiles</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
         <span class="n">arc_zoom_to_extent</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 
-    <span class="n">add_local_tile</span> <span class="o">=</span> <span class="n">add_raster</span>
 
     <span class="k">def</span> <span class="nf">add_remote_tile</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -8706,7 +8708,7 @@ Map            (<span title="folium.folium.Map">Map</span>)
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">band_idx</span> <span class="o">=</span> <span class="p">[</span><span class="nb">vars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_local_tile</span><span class="p">(</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_raster</span><span class="p">(</span>
             <span class="n">tif</span><span class="p">,</span>
             <span class="n">band</span><span class="o">=</span><span class="n">band_idx</span><span class="p">,</span>
             <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
@@ -11756,155 +11758,6 @@ style = {
 
 
 
-<h3 id="geemap.foliumap.Map.add_local_tile" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">add_local_tile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s1">&#39;Local COG&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
-
-
-<a href="#geemap.foliumap.Map.add_local_tile" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>Add a local raster dataset to the map.
-    If you are using this function in JupyterHub on a remote server (e.g., Binder, Microsoft Planetary Computer) and
-    if the raster does not render properly, try installing jupyter-server-proxy using <code>pip install jupyter-server-proxy</code>,
-    then running the following code before calling this function. For more info, see https://bit.ly/3JbmF93.</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>import os
-os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
-</code></pre></div></td></tr></table></div>
-
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><code>source</code></td>
-        <td><code>str</code></td>
-        <td><p>The path to the GeoTIFF file or the URL of the Cloud Optimized GeoTIFF.</p></td>
-        <td><em>required</em></td>
-      </tr>
-      <tr>
-        <td><code>band</code></td>
-        <td><code>int</code></td>
-        <td><p>The band to use. Band indexing starts at 1. Defaults to None.</p></td>
-        <td><code>None</code></td>
-      </tr>
-      <tr>
-        <td><code>palette</code></td>
-        <td><code>str</code></td>
-        <td><p>The name of the color palette from <code>palettable</code> to use when plotting a single band. See https://jiffyclub.github.io/palettable. Default is greyscale</p></td>
-        <td><code>None</code></td>
-      </tr>
-      <tr>
-        <td><code>vmin</code></td>
-        <td><code>float</code></td>
-        <td><p>The minimum value to use when colormapping the palette when plotting a single band. Defaults to None.</p></td>
-        <td><code>None</code></td>
-      </tr>
-      <tr>
-        <td><code>vmax</code></td>
-        <td><code>float</code></td>
-        <td><p>The maximum value to use when colormapping the palette when plotting a single band. Defaults to None.</p></td>
-        <td><code>None</code></td>
-      </tr>
-      <tr>
-        <td><code>nodata</code></td>
-        <td><code>float</code></td>
-        <td><p>The value from the band to use to interpret as not valid data. Defaults to None.</p></td>
-        <td><code>None</code></td>
-      </tr>
-      <tr>
-        <td><code>attribution</code></td>
-        <td><code>str</code></td>
-        <td><p>Attribution for the source raster. This defaults to a message about it being a local file.. Defaults to None.</p></td>
-        <td><code>None</code></td>
-      </tr>
-      <tr>
-        <td><code>layer_name</code></td>
-        <td><code>str</code></td>
-        <td><p>The layer name to use. Defaults to 'Local COG'.</p></td>
-        <td><code>&#39;Local COG&#39;</code></td>
-      </tr>
-  </tbody>
-</table>
-        <details class="quote">
-          <summary>Source code in <code>geemap/foliumap.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_raster</span><span class="p">(</span>
-    <span class="bp">self</span><span class="p">,</span>
-    <span class="n">source</span><span class="p">,</span>
-    <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Local COG&quot;</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a local raster dataset to the map.</span>
-<span class="sd">        If you are using this function in JupyterHub on a remote server (e.g., Binder, Microsoft Planetary Computer) and</span>
-<span class="sd">        if the raster does not render properly, try installing jupyter-server-proxy using `pip install jupyter-server-proxy`,</span>
-<span class="sd">        then running the following code before calling this function. For more info, see https://bit.ly/3JbmF93.</span>
-
-<span class="sd">        import os</span>
-<span class="sd">        os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        source (str): The path to the GeoTIFF file or the URL of the Cloud Optimized GeoTIFF.</span>
-<span class="sd">        band (int, optional): The band to use. Band indexing starts at 1. Defaults to None.</span>
-<span class="sd">        palette (str, optional): The name of the color palette from `palettable` to use when plotting a single band. See https://jiffyclub.github.io/palettable. Default is greyscale</span>
-<span class="sd">        vmin (float, optional): The minimum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
-<span class="sd">        vmax (float, optional): The maximum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
-<span class="sd">        nodata (float, optional): The value from the band to use to interpret as not valid data. Defaults to None.</span>
-<span class="sd">        attribution (str, optional): Attribution for the source raster. This defaults to a message about it being a local file.. Defaults to None.</span>
-<span class="sd">        layer_name (str, optional): The layer name to use. Defaults to &#39;Local COG&#39;.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">tile_layer</span><span class="p">,</span> <span class="n">tile_client</span> <span class="o">=</span> <span class="n">get_local_tile_layer</span><span class="p">(</span>
-        <span class="n">source</span><span class="p">,</span>
-        <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
-        <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
-        <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
-        <span class="n">nodata</span><span class="o">=</span><span class="n">nodata</span><span class="p">,</span>
-        <span class="n">attribution</span><span class="o">=</span><span class="n">attribution</span><span class="p">,</span>
-        <span class="n">tile_format</span><span class="o">=</span><span class="s2">&quot;folium&quot;</span><span class="p">,</span>
-        <span class="n">layer_name</span><span class="o">=</span><span class="n">layer_name</span><span class="p">,</span>
-        <span class="n">return_client</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">tile_layer</span><span class="p">)</span>
-
-    <span class="n">bounds</span> <span class="o">=</span> <span class="n">tile_client</span><span class="o">.</span><span class="n">bounds</span><span class="p">()</span>  <span class="c1"># [ymin, ymax, xmin, xmax]</span>
-    <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
-        <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-        <span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
-        <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-    <span class="p">)</span>  <span class="c1"># [minx, miny, maxx, maxy]</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">zoom_to_bounds</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
-
-    <span class="n">arc_add_layer</span><span class="p">(</span><span class="n">tile_layer</span><span class="o">.</span><span class="n">tiles</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-    <span class="n">arc_zoom_to_extent</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</code></pre></div>
-        </details>
-    </div>
-
-  </div>
-
-
-
-  <div class="doc doc-object doc-method">
-
-
-
 <h3 id="geemap.foliumap.Map.add_marker" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">add_marker</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="n">popup</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">icon</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">draggable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
@@ -12339,7 +12192,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
         <span class="k">else</span><span class="p">:</span>
             <span class="n">band_idx</span> <span class="o">=</span> <span class="p">[</span><span class="nb">vars</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">]</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">add_local_tile</span><span class="p">(</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_raster</span><span class="p">(</span>
         <span class="n">tif</span><span class="p">,</span>
         <span class="n">band</span><span class="o">=</span><span class="n">band_idx</span><span class="p">,</span>
         <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>

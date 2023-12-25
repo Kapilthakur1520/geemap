@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.2">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
     
     
       
@@ -904,6 +904,24 @@
   <a href="#geemap.common.array_sum" class="md-nav__link">
     <span class="md-ellipsis">
       array_sum()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.array_to_image" class="md-nav__link">
+    <span class="md-ellipsis">
+      array_to_image()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.array_to_memory_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      array_to_memory_file()
     </span>
   </a>
   
@@ -2719,6 +2737,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#geemap.common.is_on_aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_on_aws()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.is_studio_lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_studio_lab()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#geemap.common.is_tool" class="md-nav__link">
     <span class="md-ellipsis">
       is_tool()
@@ -3793,6 +3829,15 @@
   <a href="#geemap.common.write_lidar" class="md-nav__link">
     <span class="md-ellipsis">
       write_lidar()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.xee_to_image" class="md-nav__link">
+    <span class="md-ellipsis">
+      xee_to_image()
     </span>
   </a>
   
@@ -7603,6 +7648,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/141_image_array_viz/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    141 image array viz
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7778,6 +7844,24 @@
   <a href="#geemap.common.array_sum" class="md-nav__link">
     <span class="md-ellipsis">
       array_sum()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.array_to_image" class="md-nav__link">
+    <span class="md-ellipsis">
+      array_to_image()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.array_to_memory_file" class="md-nav__link">
+    <span class="md-ellipsis">
+      array_to_memory_file()
     </span>
   </a>
   
@@ -9593,6 +9677,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#geemap.common.is_on_aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_on_aws()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.is_studio_lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_studio_lab()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#geemap.common.is_tool" class="md-nav__link">
     <span class="md-ellipsis">
       is_tool()
@@ -10667,6 +10769,15 @@
   <a href="#geemap.common.write_lidar" class="md-nav__link">
     <span class="md-ellipsis">
       write_lidar()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.xee_to_image" class="md-nav__link">
+    <span class="md-ellipsis">
+      xee_to_image()
     </span>
   </a>
   
@@ -11861,6 +11972,477 @@ TitilerEndpoint        </code>
 <span class="sd">        object: ee.Number</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ee</span><span class="o">.</span><span class="n">Array</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="o">.</span><span class="n">accum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="geemap.common.array_to_image" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">array_to_image</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="s1">&#39;deflate&#39;</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cellsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s1">&#39;COG&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#geemap.common.array_to_image" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Save a NumPy array as a GeoTIFF using the projection information from an existing GeoTIFF file.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>array</code></td>
+        <td><code>np.ndarray</code></td>
+        <td><p>The NumPy array to be saved as a GeoTIFF.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>output</code></td>
+        <td><code>str</code></td>
+        <td><p>The path to the output image. If None, a temporary file will be created. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>source</code></td>
+        <td><code>str</code></td>
+        <td><p>The path to an existing GeoTIFF file with map projection information. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>dtype</code></td>
+        <td><code>np.dtype</code></td>
+        <td><p>The data type of the output array. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>compress</code></td>
+        <td><code>str</code></td>
+        <td><p>The compression method. Can be one of the following: "deflate", "lzw", "packbits", "jpeg". Defaults to "deflate".</p></td>
+        <td><code>&#39;deflate&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>transpose</code></td>
+        <td><code>bool</code></td>
+        <td><p>Whether to transpose the array from (bands, rows, columns) to (rows, columns, bands). Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>cellsize</code></td>
+        <td><code>float</code></td>
+        <td><p>The resolution of the output image in meters. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>crs</code></td>
+        <td><code>str</code></td>
+        <td><p>The CRS of the output image. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>driver</code></td>
+        <td><code>str</code></td>
+        <td><p>The driver to use for creating the output file, such as 'GTiff'. Defaults to "COG".</p></td>
+        <td><code>&#39;COG&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td></td>
+        <td><p>Additional keyword arguments to be passed to the rasterio.open() function.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>geemap/common.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">array_to_image</span><span class="p">(</span>
+    <span class="n">array</span><span class="p">,</span>
+    <span class="n">output</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">compress</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;deflate&quot;</span><span class="p">,</span>
+    <span class="n">transpose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">cellsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">crs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">driver</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;COG&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Save a NumPy array as a GeoTIFF using the projection information from an existing GeoTIFF file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        array (np.ndarray): The NumPy array to be saved as a GeoTIFF.</span>
+<span class="sd">        output (str): The path to the output image. If None, a temporary file will be created. Defaults to None.</span>
+<span class="sd">        source (str, optional): The path to an existing GeoTIFF file with map projection information. Defaults to None.</span>
+<span class="sd">        dtype (np.dtype, optional): The data type of the output array. Defaults to None.</span>
+<span class="sd">        compress (str, optional): The compression method. Can be one of the following: &quot;deflate&quot;, &quot;lzw&quot;, &quot;packbits&quot;, &quot;jpeg&quot;. Defaults to &quot;deflate&quot;.</span>
+<span class="sd">        transpose (bool, optional): Whether to transpose the array from (bands, rows, columns) to (rows, columns, bands). Defaults to True.</span>
+<span class="sd">        cellsize (float, optional): The resolution of the output image in meters. Defaults to None.</span>
+<span class="sd">        crs (str, optional): The CRS of the output image. Defaults to None.</span>
+<span class="sd">        driver (str, optional): The driver to use for creating the output file, such as &#39;GTiff&#39;. Defaults to &quot;COG&quot;.</span>
+<span class="sd">        **kwargs: Additional keyword arguments to be passed to the rasterio.open() function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">rasterio</span>
+    <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+    <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">array_to_memory_file</span><span class="p">(</span>
+            <span class="n">array</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">compress</span><span class="p">,</span> <span class="n">transpose</span><span class="p">,</span> <span class="n">cellsize</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">array</span><span class="o">.</span><span class="n">coords</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
+            <span class="n">x_dim</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">y_dim</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">array</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="n">y_dim</span><span class="p">:</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">x_dim</span><span class="p">:</span> <span class="s2">&quot;x&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">transpose</span><span class="p">:</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">out_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">output</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.tif&quot;</span><span class="p">):</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="s2">&quot;.tif&quot;</span>
+
+    <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+            <span class="n">crs</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+            <span class="k">if</span> <span class="n">compress</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">compress</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">compression</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cellsize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;resolution must be provided if source is not provided&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;crs must be provided if source is not provided, such as EPSG:3857&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;transform&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="c1"># Define the geotransformation parameters</span>
+            <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="n">cellsize</span> <span class="o">*</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">cellsize</span> <span class="o">*</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">from_bounds</span><span class="p">(</span>
+                <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;transform&quot;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Determine the minimum and maximum values in the array</span>
+        <span class="n">min_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="c1"># Determine the best dtype for the array</span>
+        <span class="k">if</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+        <span class="k">elif</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">255</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span>
+        <span class="k">elif</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">128</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">127</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span>
+        <span class="k">elif</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">65535</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint16</span>
+        <span class="k">elif</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">32768</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">32767</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span>
+
+    <span class="c1"># Convert the array to the best dtype</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="c1"># Define the GeoTIFF metadata</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;driver&quot;</span><span class="p">:</span> <span class="n">driver</span><span class="p">,</span>
+        <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;dtype&quot;</span><span class="p">:</span> <span class="n">array</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="s2">&quot;crs&quot;</span><span class="p">:</span> <span class="n">crs</span><span class="p">,</span>
+        <span class="s2">&quot;transform&quot;</span><span class="p">:</span> <span class="n">transform</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">compress</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;compress&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">compress</span>
+
+    <span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Create a new GeoTIFF file and write the array to it</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">metadata</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+                <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="geemap.common.array_to_memory_file" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">array_to_memory_file</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">compress</span><span class="o">=</span><span class="s1">&#39;deflate&#39;</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cellsize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s1">&#39;COG&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#geemap.common.array_to_memory_file" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Convert a NumPy array to a memory file.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>array</code></td>
+        <td><code>numpy.ndarray</code></td>
+        <td><p>The input NumPy array.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>source</code></td>
+        <td><code>str</code></td>
+        <td><p>Path to the source file to extract metadata from. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>dtype</code></td>
+        <td><code>str</code></td>
+        <td><p>The desired data type of the array. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>compress</code></td>
+        <td><code>str</code></td>
+        <td><p>The compression method for the output file. Defaults to "deflate".</p></td>
+        <td><code>&#39;deflate&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>transpose</code></td>
+        <td><code>bool</code></td>
+        <td><p>Whether to transpose the array from (bands, rows, columns) to (rows, columns, bands). Defaults to True.</p></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>cellsize</code></td>
+        <td><code>float</code></td>
+        <td><p>The cell size of the array if source is not provided. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>crs</code></td>
+        <td><code>str</code></td>
+        <td><p>The coordinate reference system of the array if source is not provided. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>transform</code></td>
+        <td><code>tuple</code></td>
+        <td><p>The affine transformation matrix if source is not provided. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>driver</code></td>
+        <td><code>str</code></td>
+        <td><p>The driver to use for creating the output file, such as 'GTiff'. Defaults to "COG".</p></td>
+        <td><code>&#39;COG&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td></td>
+        <td><p>Additional keyword arguments to be passed to the rasterio.open() function.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>rasterio.DatasetReader</code></td>
+      <td><p>The rasterio dataset reader object for the converted array.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>geemap/common.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">array_to_memory_file</span><span class="p">(</span>
+    <span class="n">array</span><span class="p">,</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">compress</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;deflate&quot;</span><span class="p">,</span>
+    <span class="n">transpose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">cellsize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">crs</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">transform</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;COG&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a NumPy array to a memory file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        array (numpy.ndarray): The input NumPy array.</span>
+<span class="sd">        source (str, optional): Path to the source file to extract metadata from. Defaults to None.</span>
+<span class="sd">        dtype (str, optional): The desired data type of the array. Defaults to None.</span>
+<span class="sd">        compress (str, optional): The compression method for the output file. Defaults to &quot;deflate&quot;.</span>
+<span class="sd">        transpose (bool, optional): Whether to transpose the array from (bands, rows, columns) to (rows, columns, bands). Defaults to True.</span>
+<span class="sd">        cellsize (float, optional): The cell size of the array if source is not provided. Defaults to None.</span>
+<span class="sd">        crs (str, optional): The coordinate reference system of the array if source is not provided. Defaults to None.</span>
+<span class="sd">        transform (tuple, optional): The affine transformation matrix if source is not provided. Defaults to None.</span>
+<span class="sd">        driver (str, optional): The driver to use for creating the output file, such as &#39;GTiff&#39;. Defaults to &quot;COG&quot;.</span>
+<span class="sd">        **kwargs: Additional keyword arguments to be passed to the rasterio.open() function.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        rasterio.DatasetReader: The rasterio dataset reader object for the converted array.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">rasterio</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">array</span><span class="o">.</span><span class="n">coords</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span>
+            <span class="n">x_dim</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">y_dim</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">array</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">array</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="n">y_dim</span><span class="p">:</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">x_dim</span><span class="p">:</span> <span class="s2">&quot;x&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">transpose</span><span class="p">:</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">source</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">source</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+            <span class="n">crs</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+            <span class="k">if</span> <span class="n">compress</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">compress</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">compression</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cellsize</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cellsize must be provided if source is not provided&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;crs must be provided if source is not provided, such as EPSG:3857&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;transform&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="c1"># Define the geotransformation parameters</span>
+            <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="n">cellsize</span> <span class="o">*</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                <span class="n">cellsize</span> <span class="o">*</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="c1"># (west, south, east, north, width, height)</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">from_bounds</span><span class="p">(</span>
+                <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;transform&quot;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Determine the minimum and maximum values in the array</span>
+        <span class="n">min_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="n">max_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="c1"># Determine the best dtype for the array</span>
+        <span class="k">if</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span>
+        <span class="k">elif</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">255</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span>
+        <span class="k">elif</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">128</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">127</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int8</span>
+        <span class="k">elif</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">65535</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint16</span>
+        <span class="k">elif</span> <span class="n">min_value</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">32768</span> <span class="ow">and</span> <span class="n">max_value</span> <span class="o">&lt;=</span> <span class="mi">32767</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span>
+
+    <span class="c1"># Convert the array to the best dtype</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="c1"># Define the GeoTIFF metadata</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;driver&quot;</span><span class="p">:</span> <span class="n">driver</span><span class="p">,</span>
+        <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="s2">&quot;dtype&quot;</span><span class="p">:</span> <span class="n">array</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="s2">&quot;crs&quot;</span><span class="p">:</span> <span class="n">crs</span><span class="p">,</span>
+        <span class="s2">&quot;transform&quot;</span><span class="p">:</span> <span class="n">transform</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">elif</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">compress</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="s2">&quot;compress&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">compress</span>
+
+    <span class="n">metadata</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Create a new memory file and write the array to it</span>
+    <span class="n">memory_file</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">MemoryFile</span><span class="p">()</span>
+    <span class="n">dst</span> <span class="o">=</span> <span class="n">memory_file</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="o">**</span><span class="n">metadata</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">array</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+            <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">dst</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="c1"># Read the dataset from memory</span>
+    <span class="n">dataset_reader</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">dst</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dataset_reader</span>
 </code></pre></div>
         </details>
     </div>
@@ -31543,7 +32125,7 @@ If False, returns the widget as ipytree.Tree. Defaults to False.</p></td>
 
 
 <h2 id="geemap.common.get_local_tile_layer" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_local_tile_layer</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tile_format</span><span class="o">=</span><span class="s1">&#39;ipyleaflet&#39;</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s1">&#39;Local COG&#39;</span><span class="p">,</span> <span class="n">return_client</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_local_tile_layer</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;EPSG:3857&#39;</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tile_format</span><span class="o">=</span><span class="s1">&#39;ipyleaflet&#39;</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s1">&#39;Local COG&#39;</span><span class="p">,</span> <span class="n">return_client</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#geemap.common.get_local_tile_layer" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -31551,11 +32133,11 @@ If False, returns the widget as ipytree.Tree. Defaults to False.</p></td>
     <div class="doc doc-contents ">
 
       <p>Generate an ipyleaflet/folium TileLayer from a local raster dataset or remote Cloud Optimized GeoTIFF (COG).
-    If you are using this function in JupyterHub on a remote server (e.g., Binder, Microsoft Planetary Computer),
-    try adding to following two lines to the beginning of the notebook if the raster does not render properly.</p>
+    If you are using this function in JupyterHub on a remote server and the raster does not render properly, try
+    running the following two lines before calling this function:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>import os
-os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUPYTERHUB_SERVICE_PREFIX&#39;].lstrip(&#39;/&#39;)}/proxy/{{port}}&#39;
+os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 </code></pre></div></td></tr></table></div>
 
 <p><strong>Parameters:</strong></p>
@@ -31647,6 +32229,12 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
         <td><p>If True, the tile client will be returned. Defaults to False.</p></td>
         <td><code>False</code></td>
       </tr>
+      <tr>
+        <td><code>quiet</code></td>
+        <td><code>bool</code></td>
+        <td><p>If True, the error messages will be suppressed. Defaults to False.</p></td>
+        <td><code>False</code></td>
+      </tr>
   </tbody>
 </table>
 <p><strong>Returns:</strong></p>
@@ -31680,14 +32268,15 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
     <span class="n">tile_format</span><span class="o">=</span><span class="s2">&quot;ipyleaflet&quot;</span><span class="p">,</span>
     <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Local COG&quot;</span><span class="p">,</span>
     <span class="n">return_client</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate an ipyleaflet/folium TileLayer from a local raster dataset or remote Cloud Optimized GeoTIFF (COG).</span>
-<span class="sd">        If you are using this function in JupyterHub on a remote server (e.g., Binder, Microsoft Planetary Computer),</span>
-<span class="sd">        try adding to following two lines to the beginning of the notebook if the raster does not render properly.</span>
+<span class="sd">        If you are using this function in JupyterHub on a remote server and the raster does not render properly, try</span>
+<span class="sd">        running the following two lines before calling this function:</span>
 
 <span class="sd">        import os</span>
-<span class="sd">        os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUPYTERHUB_SERVICE_PREFIX&#39;].lstrip(&#39;/&#39;)}/proxy/{{port}}&#39;</span>
+<span class="sd">        os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        source (str): The path to the GeoTIFF file or the URL of the Cloud Optimized GeoTIFF.</span>
@@ -31703,18 +32292,26 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
 <span class="sd">        tile_format (str, optional): The tile layer format. Can be either ipyleaflet or folium. Defaults to &quot;ipyleaflet&quot;.</span>
 <span class="sd">        layer_name (str, optional): The layer name to use. Defaults to None.</span>
 <span class="sd">        return_client (bool, optional): If True, the tile client will be returned. Defaults to False.</span>
+<span class="sd">        quiet (bool, optional): If True, the error messages will be suppressed. Defaults to False.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        ipyleaflet.TileLayer | folium.TileLayer: An ipyleaflet.TileLayer or folium.TileLayer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+    <span class="kn">import</span> <span class="nn">rasterio</span>
 
-    <span class="n">output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+    <span class="c1"># ... and suppress errors</span>
+    <span class="n">gdal</span><span class="o">.</span><span class="n">PushErrorHandler</span><span class="p">(</span><span class="s2">&quot;CPLQuietErrorHandler&quot;</span><span class="p">)</span>
 
     <span class="n">check_package</span><span class="p">(</span>
         <span class="s2">&quot;localtileserver&quot;</span><span class="p">,</span> <span class="n">URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/banesullivan/localtileserver&quot;</span>
     <span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;max_zoom&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;max_zoom&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="k">if</span> <span class="s2">&quot;max_native_zoom&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;max_native_zoom&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
 
     <span class="c1"># Make it compatible with binder and JupyterHub</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;JUPYTERHUB_SERVICE_PREFIX&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -31722,11 +32319,24 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
             <span class="s2">&quot;LOCALTILESERVER_CLIENT_PREFIX&quot;</span>
         <span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;JUPYTERHUB_SERVICE_PREFIX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/proxy/</span><span class="se">{{</span><span class="s2">port</span><span class="se">}}</span><span class="s2">&quot;</span>
 
+    <span class="k">if</span> <span class="n">is_studio_lab</span><span class="p">():</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span>
+            <span class="s2">&quot;LOCALTILESERVER_CLIENT_PREFIX&quot;</span>
+        <span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;studiolab/default/jupyter/proxy/</span><span class="se">{{</span><span class="s2">port</span><span class="se">}}</span><span class="s2">&quot;</span>
+    <span class="k">elif</span> <span class="n">is_on_aws</span><span class="p">():</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LOCALTILESERVER_CLIENT_PREFIX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;proxy/</span><span class="si">{port}</span><span class="s2">&quot;</span>
+    <span class="k">elif</span> <span class="s2">&quot;prefix&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LOCALTILESERVER_CLIENT_PREFIX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;prefix&quot;</span><span class="p">]</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;prefix&quot;</span><span class="p">)</span>
+
     <span class="kn">from</span> <span class="nn">localtileserver</span> <span class="kn">import</span> <span class="p">(</span>
         <span class="n">get_leaflet_tile_layer</span><span class="p">,</span>
         <span class="n">get_folium_tile_layer</span><span class="p">,</span>
         <span class="n">TileClient</span><span class="p">,</span>
     <span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;show_loading&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;show_loading&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">source</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;http&quot;</span><span class="p">):</span>
@@ -31738,6 +32348,11 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The source path does not exist.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">source</span> <span class="o">=</span> <span class="n">github_raw_url</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">TileClient</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span>
+        <span class="n">source</span><span class="p">,</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">DatasetReader</span>
+    <span class="p">):</span>
+        <span class="k">pass</span>
+
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The source must either be a string or TileClient&quot;</span><span class="p">)</span>
 
@@ -31753,15 +32368,48 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
         <span class="k">else</span><span class="p">:</span>
             <span class="n">layer_name</span> <span class="o">=</span> <span class="s2">&quot;LocalTile_&quot;</span> <span class="o">+</span> <span class="n">random_string</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">DatasetReader</span><span class="p">):</span>
+        <span class="n">tile_client</span> <span class="o">=</span> <span class="n">TileClient</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tile_client</span> <span class="o">=</span> <span class="n">source</span>
+
     <span class="k">if</span> <span class="s2">&quot;cmap&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;cmap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">palette</span>
 
-    <span class="k">if</span> <span class="s2">&quot;alpha&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;opacity&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">])</span>
-
-    <span class="k">with</span> <span class="n">output</span><span class="p">:</span>
-        <span class="n">tile_client</span> <span class="o">=</span> <span class="n">TileClient</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">)</span>
-
+    <span class="k">if</span> <span class="n">quiet</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">output</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">tile_format</span> <span class="o">==</span> <span class="s2">&quot;ipyleaflet&quot;</span><span class="p">:</span>
+                <span class="n">tile_layer</span> <span class="o">=</span> <span class="n">get_leaflet_tile_layer</span><span class="p">(</span>
+                    <span class="n">tile_client</span><span class="p">,</span>
+                    <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span>
+                    <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">,</span>
+                    <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span>
+                    <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span>
+                    <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+                    <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+                    <span class="n">nodata</span><span class="o">=</span><span class="n">nodata</span><span class="p">,</span>
+                    <span class="n">attribution</span><span class="o">=</span><span class="n">attribution</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tile_layer</span> <span class="o">=</span> <span class="n">get_folium_tile_layer</span><span class="p">(</span>
+                    <span class="n">tile_client</span><span class="p">,</span>
+                    <span class="n">port</span><span class="o">=</span><span class="n">port</span><span class="p">,</span>
+                    <span class="n">debug</span><span class="o">=</span><span class="n">debug</span><span class="p">,</span>
+                    <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">,</span>
+                    <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span>
+                    <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
+                    <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
+                    <span class="n">nodata</span><span class="o">=</span><span class="n">nodata</span><span class="p">,</span>
+                    <span class="n">attr</span><span class="o">=</span><span class="n">attribution</span><span class="p">,</span>
+                    <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">tile_format</span> <span class="o">==</span> <span class="s2">&quot;ipyleaflet&quot;</span><span class="p">:</span>
             <span class="n">tile_layer</span> <span class="o">=</span> <span class="n">get_leaflet_tile_layer</span><span class="p">(</span>
                 <span class="n">tile_client</span><span class="p">,</span>
@@ -31774,8 +32422,6 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
                 <span class="n">nodata</span><span class="o">=</span><span class="n">nodata</span><span class="p">,</span>
                 <span class="n">attribution</span><span class="o">=</span><span class="n">attribution</span><span class="p">,</span>
                 <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span><span class="p">,</span>
-                <span class="n">max_zoom</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-                <span class="n">max_native_zoom</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -31791,8 +32437,6 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
                 <span class="n">attr</span><span class="o">=</span><span class="n">attribution</span><span class="p">,</span>
                 <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="n">name</span><span class="o">=</span><span class="n">layer_name</span><span class="p">,</span>
-                <span class="n">max_zoom</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
-                <span class="n">max_native_zoom</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
                 <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
 
@@ -36246,6 +36890,116 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="geemap.common.is_on_aws" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">is_on_aws</span><span class="p">()</span></code>
+
+
+<a href="#geemap.common.is_on_aws" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Check if the current notebook is running on AWS.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>bool</code></td>
+      <td><p>True if the notebook is running on AWS.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>geemap/common.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">is_on_aws</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if the current notebook is running on AWS.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if the notebook is running on AWS.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">psutil</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">cmdline</span><span class="p">()</span>
+
+    <span class="n">on_aws</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.aws&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;ec2-user&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">on_aws</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">on_aws</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h2 id="geemap.common.is_studio_lab" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">is_studio_lab</span><span class="p">()</span></code>
+
+
+<a href="#geemap.common.is_studio_lab" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Check if the current notebook is running on Studio Lab.</p>
+
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>bool</code></td>
+      <td><p>True if the notebook is running on Studio Lab.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>geemap/common.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">is_studio_lab</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if the current notebook is running on Studio Lab.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True if the notebook is running on Studio Lab.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">psutil</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">cmdline</span><span class="p">()</span>
+
+    <span class="n">on_studio_lab</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">output</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;studiolab/bin&quot;</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+            <span class="n">on_studio_lab</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="n">on_studio_lab</span>
 </code></pre></div>
         </details>
     </div>
@@ -49969,6 +50723,221 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
 
 
 
+<h2 id="geemap.common.xee_to_image" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">xee_to_image</span><span class="p">(</span><span class="n">xds</span><span class="p">,</span> <span class="n">filenames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s1">&#39;COG&#39;</span><span class="p">,</span> <span class="n">time_unit</span><span class="o">=</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#geemap.common.xee_to_image" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Convert xarray Dataset to georeferenced images.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>xds</code></td>
+        <td><code>xr.Dataset</code></td>
+        <td><p>The xarray Dataset to convert to images.</p></td>
+        <td><em>required</em></td>
+      </tr>
+      <tr>
+        <td><code>filenames</code></td>
+        <td><code>Union[str, List[str]]</code></td>
+        <td><p>Output filenames for the images.
+If a single string is provided, it will be used as the filename for all images.
+If a list of strings is provided, the filenames will be used in order. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>out_dir</code></td>
+        <td><code>str</code></td>
+        <td><p>Output directory for the images. Defaults to current working directory.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>crs</code></td>
+        <td><code>str</code></td>
+        <td><p>Coordinate reference system (CRS) of the output images.
+If not provided, the CRS is inferred from the Dataset's attributes ('crs' attribute) or set to 'EPSG:4326'.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>nodata</code></td>
+        <td><code>float</code></td>
+        <td><p>The nodata value used for the output images. Defaults to None.</p></td>
+        <td><code>None</code></td>
+      </tr>
+      <tr>
+        <td><code>driver</code></td>
+        <td><code>str</code></td>
+        <td><p>Driver used for writing the output images, such as 'GTiff'. Defaults to "COG".</p></td>
+        <td><code>&#39;COG&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>time_unit</code></td>
+        <td><code>str</code></td>
+        <td><p>Time unit used for generating default filenames. Defaults to 'D'.</p></td>
+        <td><code>&#39;D&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>quiet</code></td>
+        <td><code>bool</code></td>
+        <td><p>If True, suppresses progress messages. Defaults to False.</p></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>**kwargs</code></td>
+        <td></td>
+        <td><p>Additional keyword arguments passed to rioxarray's <code>rio.to_raster()</code> function.</p></td>
+        <td><code>{}</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>None</code></td>
+      <td><p>None</p></td>
+    </tr>
+  </tbody>
+</table>
+<p><strong>Exceptions:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>ValueError</code></td>
+        <td><p>If the number of filenames doesn't match the number of time steps in the Dataset.</p></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>geemap/common.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">xee_to_image</span><span class="p">(</span>
+    <span class="n">xds</span><span class="p">,</span>
+    <span class="n">filenames</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">out_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">crs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">nodata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">driver</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;COG&quot;</span><span class="p">,</span>
+    <span class="n">time_unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span>
+    <span class="n">quiet</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert xarray Dataset to georeferenced images.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        xds (xr.Dataset): The xarray Dataset to convert to images.</span>
+<span class="sd">        filenames (Union[str, List[str]], optional): Output filenames for the images.</span>
+<span class="sd">            If a single string is provided, it will be used as the filename for all images.</span>
+<span class="sd">            If a list of strings is provided, the filenames will be used in order. Defaults to None.</span>
+<span class="sd">        out_dir (str, optional): Output directory for the images. Defaults to current working directory.</span>
+<span class="sd">        crs (str, optional): Coordinate reference system (CRS) of the output images.</span>
+<span class="sd">            If not provided, the CRS is inferred from the Dataset&#39;s attributes (&#39;crs&#39; attribute) or set to &#39;EPSG:4326&#39;.</span>
+<span class="sd">        nodata (float, optional): The nodata value used for the output images. Defaults to None.</span>
+<span class="sd">        driver (str, optional): Driver used for writing the output images, such as &#39;GTiff&#39;. Defaults to &quot;COG&quot;.</span>
+<span class="sd">        time_unit (str, optional): Time unit used for generating default filenames. Defaults to &#39;D&#39;.</span>
+<span class="sd">        quiet (bool, optional): If True, suppresses progress messages. Defaults to False.</span>
+<span class="sd">        **kwargs: Additional keyword arguments passed to rioxarray&#39;s `rio.to_raster()` function.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If the number of filenames doesn&#39;t match the number of time steps in the Dataset.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">rioxarray</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="n">install_package</span><span class="p">(</span><span class="s2">&quot;rioxarray&quot;</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">rioxarray</span>
+
+    <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;crs&quot;</span> <span class="ow">in</span> <span class="n">xds</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+        <span class="n">crs</span> <span class="o">=</span> <span class="n">xds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;crs&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">crs</span> <span class="o">=</span> <span class="s2">&quot;EPSG:4326&quot;</span>
+
+    <span class="k">if</span> <span class="n">out_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">out_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">out_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">out_dir</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">filenames</span> <span class="o">=</span> <span class="p">[</span><span class="n">filenames</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filenames</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">filenames</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xds</span><span class="o">.</span><span class="n">time</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The number of filenames must match the number of time steps&quot;</span>
+            <span class="p">)</span>
+
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">coord</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">xds</span><span class="o">.</span><span class="n">coords</span><span class="p">]</span>
+    <span class="n">x_dim</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">y_dim</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">xds</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">nodata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Create a Boolean mask where all three variables are zero (nodata)</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">xds</span> <span class="o">==</span> <span class="n">nodata</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+            <span class="c1"># Set nodata values based on the mask for all variables</span>
+            <span class="n">xds</span> <span class="o">=</span> <span class="n">xds</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="o">~</span><span class="n">mask</span><span class="p">,</span> <span class="n">other</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">quiet</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing </span><span class="si">{</span><span class="n">index</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">xds</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">xds</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+        <span class="c1"># transform the image to suit rioxarray format</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">image</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="n">y_dim</span><span class="p">:</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">x_dim</span><span class="p">:</span> <span class="s2">&quot;x&quot;</span><span class="p">})</span>
+            <span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">write_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">filenames</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">date</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">datetime_as_string</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="n">time_unit</span><span class="p">)</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">.tif&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">filenames</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+        <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">rio</span><span class="o">.</span><span class="n">to_raster</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="n">driver</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h2 id="geemap.common.xy_to_points" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">xy_to_points</span><span class="p">(</span><span class="n">in_csv</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="n">longitude</span><span class="o">=</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></code>
 
@@ -50190,8 +51159,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <span class="n">out_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;zonal_stats.csv&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="s2">&quot;statistics_type&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">]</span>
-        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
+        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
 
     <span class="n">allowed_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="s2">&quot;geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;kml&quot;</span><span class="p">,</span> <span class="s2">&quot;kmz&quot;</span><span class="p">,</span> <span class="s2">&quot;shp&quot;</span><span class="p">]</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">out_file_path</span><span class="p">)</span>
@@ -50483,8 +51451,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <span class="n">out_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;zonal_stats_by_group.csv&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="s2">&quot;statistics_type&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">]</span>
-        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
+        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
 
     <span class="n">band_count</span> <span class="o">=</span> <span class="n">in_value_raster</span><span class="o">.</span><span class="n">bandNames</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
 
@@ -50778,8 +51745,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <span class="n">out_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;zonal_stats.csv&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="s2">&quot;statistics_type&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">]</span>
-        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
+        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
 
     <span class="n">allowed_formats</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="s2">&quot;geojson&quot;</span><span class="p">,</span> <span class="s2">&quot;kml&quot;</span><span class="p">,</span> <span class="s2">&quot;kmz&quot;</span><span class="p">,</span> <span class="s2">&quot;shp&quot;</span><span class="p">]</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">out_file_path</span><span class="p">)</span>
@@ -51071,8 +52037,7 @@ such as https://developers.google.com/earth-engine/datasets/catalog/MODIS_051_MC
         <span class="n">out_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;zonal_stats_by_group.csv&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="s2">&quot;statistics_type&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">]</span>
-        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
+        <span class="n">stat_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;statistics_type&quot;</span><span class="p">)</span>
 
     <span class="n">band_count</span> <span class="o">=</span> <span class="n">in_value_raster</span><span class="o">.</span><span class="n">bandNames</span><span class="p">()</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
 
