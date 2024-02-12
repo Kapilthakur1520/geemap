@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.6">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.9">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.f2e4d321.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -599,10 +599,8 @@
     
     
     
-    
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
-        
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" checked>
@@ -4301,10 +4299,8 @@
     
     
     
-    
     <li class="md-nav__item md-nav__item--nested">
       
-        
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
@@ -4618,10 +4614,8 @@
     
     
     
-    
     <li class="md-nav__item md-nav__item--nested">
       
-        
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
@@ -15520,7 +15514,7 @@ interval : boolean (default False)
       <tr>
         <td><code>url</code></td>
         <td><code>str</code></td>
-        <td><p>HTTP URL to a COG, e.g., 'https://opendata.digitalglobe.com/events/california-fire-2020/pre-event/2018-02-16/pine-gulch-fire20/1030010076004E00.tif'</p></td>
+        <td><p>HTTP URL to a COG, e.g., 'https://github.com/opengeos/data/releases/download/raster/Libya-2023-07-01.tif'</p></td>
         <td><em>required</em></td>
       </tr>
       <tr>
@@ -15574,7 +15568,7 @@ interval : boolean (default False)
 <span class="sd">    Args:</span>
 <span class="sd">        lon (float): Longitude of the pixel.</span>
 <span class="sd">        lat (float): Latitude of the pixel.</span>
-<span class="sd">        url (str): HTTP URL to a COG, e.g., &#39;https://opendata.digitalglobe.com/events/california-fire-2020/pre-event/2018-02-16/pine-gulch-fire20/1030010076004E00.tif&#39;</span>
+<span class="sd">        url (str): HTTP URL to a COG, e.g., &#39;https://github.com/opengeos/data/releases/download/raster/Libya-2023-07-01.tif&#39;</span>
 <span class="sd">        bidx (str, optional): Dataset band indexes (e.g bidx=1, bidx=1&amp;bidx=2&amp;bidx=3). Defaults to None.</span>
 <span class="sd">        titiler_endpoint (str, optional): Titiler endpoint, e.g., &quot;https://titiler.xyz&quot;, &quot;planetary-computer&quot;, &quot;pc&quot;. Defaults to None.</span>
 <span class="sd">        timeout (int, optional): Timeout in seconds. Defaults to 300.</span>
@@ -25315,7 +25309,7 @@ such as 'crs_transform'.</p></td>
         <td><code>token_name</code></td>
         <td><code>str</code></td>
         <td><p>The name of the Earth Engine token. Defaults to "EARTHENGINE_TOKEN".
-In Colab, you can also set a secret named "EE_PROJECT_ID" to initialize Earth Engine. </p></td>
+In Colab, you can also set a secret named "EE_PROJECT_ID" to initialize Earth Engine.</p></td>
         <td><code>&#39;EARTHENGINE_TOKEN&#39;</code></td>
       </tr>
       <tr>
@@ -25366,7 +25360,7 @@ opt_url='https://earthengine-highvolume.googleapis.com' to use the Earth Engine 
 
 <span class="sd">    Args:</span>
 <span class="sd">        token_name (str, optional): The name of the Earth Engine token. Defaults to &quot;EARTHENGINE_TOKEN&quot;.</span>
-<span class="sd">            In Colab, you can also set a secret named &quot;EE_PROJECT_ID&quot; to initialize Earth Engine. </span>
+<span class="sd">            In Colab, you can also set a secret named &quot;EE_PROJECT_ID&quot; to initialize Earth Engine.</span>
 <span class="sd">        auth_mode (str, optional): The authentication mode, can be one of colab, notebook, localhost, or gcloud.</span>
 <span class="sd">            See https://developers.google.com/earth-engine/guides/auth for more details. Defaults to None.</span>
 <span class="sd">        service_account (bool, optional): If True, use a service account. Defaults to False.</span>
@@ -31234,13 +31228,13 @@ Source code adapted from https://github.com/mapbox/rasterio/blob/master/rasterio
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Retrieving data. Please wait ...&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
             <span class="k">if</span> <span class="s2">&quot;Decennial&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
-                <span class="n">links</span><span class="p">[</span>
-                    <span class="n">name</span>
-                <span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://tigerweb.geo.census.gov/arcgis/services/TIGERweb/tigerWMS_</span><span class="si">{</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/MapServer/WMSServer&quot;</span>
+                <span class="n">links</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;https://tigerweb.geo.census.gov/arcgis/services/TIGERweb/tigerWMS_</span><span class="si">{</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/MapServer/WMSServer&quot;</span>
+                <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">links</span><span class="p">[</span>
-                    <span class="n">name</span>
-                <span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://tigerweb.geo.census.gov/arcgis/services/Census2020/tigerWMS_</span><span class="si">{</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Decennial&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/MapServer/WMSServer&quot;</span>
+                <span class="n">links</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;https://tigerweb.geo.census.gov/arcgis/services/Census2020/tigerWMS_</span><span class="si">{</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Decennial&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/MapServer/WMSServer&quot;</span>
+                <span class="p">)</span>
 
             <span class="n">wms</span> <span class="o">=</span> <span class="n">WebMapService</span><span class="p">(</span><span class="n">links</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
             <span class="n">layers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">wms</span><span class="o">.</span><span class="n">contents</span><span class="p">)</span>
@@ -32326,14 +32320,14 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 
     <span class="c1"># Make it compatible with binder and JupyterHub</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;JUPYTERHUB_SERVICE_PREFIX&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span>
-            <span class="s2">&quot;LOCALTILESERVER_CLIENT_PREFIX&quot;</span>
-        <span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;JUPYTERHUB_SERVICE_PREFIX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/proxy/</span><span class="se">{{</span><span class="s2">port</span><span class="se">}}</span><span class="s2">&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LOCALTILESERVER_CLIENT_PREFIX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;JUPYTERHUB_SERVICE_PREFIX&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/proxy/</span><span class="se">{{</span><span class="s2">port</span><span class="se">}}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
 
     <span class="k">if</span> <span class="n">is_studio_lab</span><span class="p">():</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span>
-            <span class="s2">&quot;LOCALTILESERVER_CLIENT_PREFIX&quot;</span>
-        <span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;studiolab/default/jupyter/proxy/</span><span class="se">{{</span><span class="s2">port</span><span class="se">}}</span><span class="s2">&quot;</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LOCALTILESERVER_CLIENT_PREFIX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;studiolab/default/jupyter/proxy/</span><span class="se">{{</span><span class="s2">port</span><span class="se">}}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
     <span class="k">elif</span> <span class="n">is_on_aws</span><span class="p">():</span>
         <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;LOCALTILESERVER_CLIENT_PREFIX&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;proxy/</span><span class="si">{port}</span><span class="s2">&quot;</span>
     <span class="k">elif</span> <span class="s2">&quot;prefix&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
@@ -38949,7 +38943,7 @@ Option 3: https://storage.cloud.google.com/gcp-public-data-landsat/LC08/01/044/0
       <tr>
         <td><code>url</code></td>
         <td><code>str</code></td>
-        <td><p>HTTP URL to a COG, e.g., 'https://opendata.digitalglobe.com/events/california-fire-2020/pre-event/2018-02-16/pine-gulch-fire20/1030010076004E00.tif'</p></td>
+        <td><p>HTTP URL to a COG, e.g., 'https://github.com/opengeos/data/releases/download/raster/Libya-2023-07-01.tif'</p></td>
         <td><em>required</em></td>
       </tr>
       <tr>
@@ -39001,7 +38995,7 @@ Option 3: https://storage.cloud.google.com/gcp-public-data-landsat/LC08/01/044/0
 <span class="sd">    Args:</span>
 <span class="sd">        lon (float): Longitude of the pixel.</span>
 <span class="sd">        lat (float): Latitude of the pixel.</span>
-<span class="sd">        url (str): HTTP URL to a COG, e.g., &#39;https://opendata.digitalglobe.com/events/california-fire-2020/pre-event/2018-02-16/pine-gulch-fire20/1030010076004E00.tif&#39;</span>
+<span class="sd">        url (str): HTTP URL to a COG, e.g., &#39;https://github.com/opengeos/data/releases/download/raster/Libya-2023-07-01.tif&#39;</span>
 <span class="sd">        bidx (str, optional): Dataset band indexes (e.g bidx=1, bidx=1&amp;bidx=2&amp;bidx=3). Defaults to None.</span>
 <span class="sd">        titiler_endpoint (str, optional): Titiler endpoint, e.g., &quot;https://titiler.xyz&quot;, &quot;planetary-computer&quot;, &quot;pc&quot;. Defaults to None.</span>
 <span class="sd">        verbose (bool, optional): Print status messages. Defaults to True.</span>
@@ -52311,7 +52305,7 @@ If not provided, the CRS is inferred from the Dataset's attributes ('crs' attrib
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago">&lt;span class=&#34;timeago&#34; datetime=&#34;2020-11-01T20:25:43+00:00&#34; locale=&#34;en&#34;&gt;&lt;/span&gt;</span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-01</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2020-11-01T20:25:43+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-01</span>
   </span>
 
     
@@ -52321,7 +52315,7 @@ If not provided, the CRS is inferred from the Dataset's attributes ('crs' attrib
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago">&lt;span class=&#34;timeago&#34; datetime=&#34;2020-11-01T20:25:43+00:00&#34; locale=&#34;en&#34;&gt;&lt;/span&gt;</span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-01</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2020-11-01T20:25:43+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2020-11-01</span>
   </span>
 
     
@@ -52442,7 +52436,7 @@ If not provided, the CRS is inferred from the Dataset's attributes ('crs' attrib
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.e1c3ead8.min.js"></script>
+      <script src="../assets/javascripts/bundle.8fd75fb4.min.js"></script>
       
         <script src="../js/timeago.min.js"></script>
       
