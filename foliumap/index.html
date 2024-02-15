@@ -6852,14 +6852,15 @@ Map            (<span title="folium.folium.Map">Map</span>)
 
     <span class="k">def</span> <span class="nf">add_raster</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">source</span><span class="p">,</span>
-        <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Local COG&quot;</span><span class="p">,</span>
+        <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">indexes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">colormap</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">vmin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">vmax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">nodata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">attribution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">layer_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Raster&quot;</span><span class="p">,</span>
+        <span class="n">array_args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a local raster dataset to the map.</span>
@@ -6872,19 +6873,26 @@ Map            (<span title="folium.folium.Map">Map</span>)
 
 <span class="sd">        Args:</span>
 <span class="sd">            source (str): The path to the GeoTIFF file or the URL of the Cloud Optimized GeoTIFF.</span>
-<span class="sd">            band (int, optional): The band to use. Band indexing starts at 1. Defaults to None.</span>
-<span class="sd">            palette (str, optional): The name of the color palette from `palettable` to use when plotting a single band. See https://jiffyclub.github.io/palettable. Default is greyscale</span>
-<span class="sd">            vmin (float, optional): The minimum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
-<span class="sd">            vmax (float, optional): The maximum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
+<span class="sd">            indexes (int, optional): The band(s) to use. Band indexing starts at 1. Defaults to None.</span>
+<span class="sd">            colormap (str, optional): The name of the colormap from `matplotlib` to use when plotting a single band. See https://matplotlib.org/stable/gallery/color/colormap_reference.html. Default is greyscale.</span>
+<span class="sd">            vmin (float, optional): The minimum value to use when colormapping the colormap when plotting a single band. Defaults to None.</span>
+<span class="sd">            vmax (float, optional): The maximum value to use when colormapping the colormap when plotting a single band. Defaults to None.</span>
 <span class="sd">            nodata (float, optional): The value from the band to use to interpret as not valid data. Defaults to None.</span>
 <span class="sd">            attribution (str, optional): Attribution for the source raster. This defaults to a message about it being a local file.. Defaults to None.</span>
-<span class="sd">            layer_name (str, optional): The layer name to use. Defaults to &#39;Local COG&#39;.</span>
+<span class="sd">            layer_name (str, optional): The layer name to use. Defaults to &#39;Raster&#39;.</span>
+<span class="sd">            array_args (dict, optional): Additional arguments to pass to `array_to_image`. Defaults to {}.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+        <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">array_to_image</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="o">**</span><span class="n">array_args</span><span class="p">)</span>
 
         <span class="n">tile_layer</span><span class="p">,</span> <span class="n">tile_client</span> <span class="o">=</span> <span class="n">get_local_tile_layer</span><span class="p">(</span>
             <span class="n">source</span><span class="p">,</span>
-            <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span>
-            <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
+            <span class="n">indexes</span><span class="o">=</span><span class="n">indexes</span><span class="p">,</span>
+            <span class="n">colormap</span><span class="o">=</span><span class="n">colormap</span><span class="p">,</span>
             <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
             <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
             <span class="n">nodata</span><span class="o">=</span><span class="n">nodata</span><span class="p">,</span>
@@ -6907,7 +6915,6 @@ Map            (<span title="folium.folium.Map">Map</span>)
 
         <span class="n">arc_add_layer</span><span class="p">(</span><span class="n">tile_layer</span><span class="o">.</span><span class="n">tiles</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
         <span class="n">arc_zoom_to_extent</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-
 
     <span class="k">def</span> <span class="nf">add_remote_tile</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -13575,7 +13582,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
 
 
 <h3 id="geemap.foliumap.Map.add_raster" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">add_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s1">&#39;Local COG&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">add_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">indexes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s1">&#39;Raster&#39;</span><span class="p">,</span> <span class="n">array_args</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#geemap.foliumap.Map.add_raster" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -13609,27 +13616,27 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
         <td><em>required</em></td>
       </tr>
       <tr>
-        <td><code>band</code></td>
+        <td><code>indexes</code></td>
         <td><code>int</code></td>
-        <td><p>The band to use. Band indexing starts at 1. Defaults to None.</p></td>
+        <td><p>The band(s) to use. Band indexing starts at 1. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
       <tr>
-        <td><code>palette</code></td>
+        <td><code>colormap</code></td>
         <td><code>str</code></td>
-        <td><p>The name of the color palette from <code>palettable</code> to use when plotting a single band. See https://jiffyclub.github.io/palettable. Default is greyscale</p></td>
+        <td><p>The name of the colormap from <code>matplotlib</code> to use when plotting a single band. See https://matplotlib.org/stable/gallery/color/colormap_reference.html. Default is greyscale.</p></td>
         <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>vmin</code></td>
         <td><code>float</code></td>
-        <td><p>The minimum value to use when colormapping the palette when plotting a single band. Defaults to None.</p></td>
+        <td><p>The minimum value to use when colormapping the colormap when plotting a single band. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
       <tr>
         <td><code>vmax</code></td>
         <td><code>float</code></td>
-        <td><p>The maximum value to use when colormapping the palette when plotting a single band. Defaults to None.</p></td>
+        <td><p>The maximum value to use when colormapping the colormap when plotting a single band. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
       <tr>
@@ -13647,8 +13654,14 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
       <tr>
         <td><code>layer_name</code></td>
         <td><code>str</code></td>
-        <td><p>The layer name to use. Defaults to 'Local COG'.</p></td>
-        <td><code>&#39;Local COG&#39;</code></td>
+        <td><p>The layer name to use. Defaults to 'Raster'.</p></td>
+        <td><code>&#39;Raster&#39;</code></td>
+      </tr>
+      <tr>
+        <td><code>array_args</code></td>
+        <td><code>dict</code></td>
+        <td><p>Additional arguments to pass to <code>array_to_image</code>. Defaults to {}.</p></td>
+        <td><code>{}</code></td>
       </tr>
   </tbody>
 </table>
@@ -13656,14 +13669,15 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
           <summary>Source code in <code>geemap/foliumap.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_raster</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">source</span><span class="p">,</span>
-    <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Local COG&quot;</span><span class="p">,</span>
+    <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">indexes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">colormap</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">nodata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">attribution</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">layer_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Raster&quot;</span><span class="p">,</span>
+    <span class="n">array_args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a local raster dataset to the map.</span>
@@ -13676,19 +13690,26 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 
 <span class="sd">    Args:</span>
 <span class="sd">        source (str): The path to the GeoTIFF file or the URL of the Cloud Optimized GeoTIFF.</span>
-<span class="sd">        band (int, optional): The band to use. Band indexing starts at 1. Defaults to None.</span>
-<span class="sd">        palette (str, optional): The name of the color palette from `palettable` to use when plotting a single band. See https://jiffyclub.github.io/palettable. Default is greyscale</span>
-<span class="sd">        vmin (float, optional): The minimum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
-<span class="sd">        vmax (float, optional): The maximum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
+<span class="sd">        indexes (int, optional): The band(s) to use. Band indexing starts at 1. Defaults to None.</span>
+<span class="sd">        colormap (str, optional): The name of the colormap from `matplotlib` to use when plotting a single band. See https://matplotlib.org/stable/gallery/color/colormap_reference.html. Default is greyscale.</span>
+<span class="sd">        vmin (float, optional): The minimum value to use when colormapping the colormap when plotting a single band. Defaults to None.</span>
+<span class="sd">        vmax (float, optional): The maximum value to use when colormapping the colormap when plotting a single band. Defaults to None.</span>
 <span class="sd">        nodata (float, optional): The value from the band to use to interpret as not valid data. Defaults to None.</span>
 <span class="sd">        attribution (str, optional): Attribution for the source raster. This defaults to a message about it being a local file.. Defaults to None.</span>
-<span class="sd">        layer_name (str, optional): The layer name to use. Defaults to &#39;Local COG&#39;.</span>
+<span class="sd">        layer_name (str, optional): The layer name to use. Defaults to &#39;Raster&#39;.</span>
+<span class="sd">        array_args (dict, optional): Additional arguments to pass to `array_to_image`. Defaults to {}.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">array_to_image</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="o">**</span><span class="n">array_args</span><span class="p">)</span>
 
     <span class="n">tile_layer</span><span class="p">,</span> <span class="n">tile_client</span> <span class="o">=</span> <span class="n">get_local_tile_layer</span><span class="p">(</span>
         <span class="n">source</span><span class="p">,</span>
-        <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
+        <span class="n">indexes</span><span class="o">=</span><span class="n">indexes</span><span class="p">,</span>
+        <span class="n">colormap</span><span class="o">=</span><span class="n">colormap</span><span class="p">,</span>
         <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
         <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
         <span class="n">nodata</span><span class="o">=</span><span class="n">nodata</span><span class="p">,</span>

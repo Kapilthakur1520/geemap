@@ -8097,6 +8097,7 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 <span class="sd">            titiler_endpoint (str, optional): Titiler endpoint. Defaults to &quot;https://titiler.xyz&quot;.</span>
 <span class="sd">            **kwargs: Arbitrary keyword arguments, including bidx, expression, nodata, unscale, resampling, rescale, color_formula, colormap, colormap_name, return_mask. See https://developmentseed.org/titiler/endpoints/cog/ and https://cogeotiff.github.io/rio-tiler/colormap/. To select a certain bands, use bidx=[1, 2, 3]</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="n">tile_url</span> <span class="o">=</span> <span class="n">cog_tile</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">titiler_endpoint</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">bounds</span> <span class="o">=</span> <span class="n">cog_bounds</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">titiler_endpoint</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_tile_layer</span><span class="p">(</span><span class="n">tile_url</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attribution</span><span class="p">,</span> <span class="n">opacity</span><span class="p">,</span> <span class="n">shown</span><span class="p">)</span>
@@ -9265,15 +9266,16 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
     <span class="k">def</span> <span class="nf">add_raster</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">source</span><span class="p">,</span>
-        <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">indexes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">colormap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Local COG&quot;</span><span class="p">,</span>
+        <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Raster&quot;</span><span class="p">,</span>
         <span class="n">zoom_to_layer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">array_args</span><span class="o">=</span><span class="p">{},</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a local raster dataset to the map.</span>
@@ -9286,21 +9288,27 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 
 <span class="sd">        Args:</span>
 <span class="sd">            source (str): The path to the GeoTIFF file or the URL of the Cloud Optimized GeoTIFF.</span>
-<span class="sd">            band (int, optional): The band to use. Band indexing starts at 1. Defaults to None.</span>
-<span class="sd">            palette (str, optional): The name of the color palette from `palettable` to use when plotting a single band. See https://jiffyclub.github.io/palettable. Default is greyscale</span>
+<span class="sd">            indexes (int, optional): The band(s) to use. Band indexing starts at 1. Defaults to None.</span>
+<span class="sd">            colormap (str, optional): The name of the colormap from `matplotlib` to use when plotting a single band. See https://matplotlib.org/stable/gallery/color/colormap_reference.html. Default is greyscale.</span>
 <span class="sd">            vmin (float, optional): The minimum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
 <span class="sd">            vmax (float, optional): The maximum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
 <span class="sd">            nodata (float, optional): The value from the band to use to interpret as not valid data. Defaults to None.</span>
 <span class="sd">            attribution (str, optional): Attribution for the source raster. This defaults to a message about it being a local file.. Defaults to None.</span>
-<span class="sd">            layer_name (str, optional): The layer name to use. Defaults to &#39;Local COG&#39;.</span>
+<span class="sd">            layer_name (str, optional): The layer name to use. Defaults to &#39;Raster&#39;.</span>
 <span class="sd">            zoom_to_layer (bool, optional): Whether to zoom to the extent of the layer. Defaults to True.</span>
 <span class="sd">            visible (bool, optional): Whether the layer is visible. Defaults to True.</span>
+<span class="sd">            array_args (dict, optional): Additional arguments to pass to `array_to_memory_file` when reading the raster. Defaults to {}.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+        <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+            <span class="n">source</span> <span class="o">=</span> <span class="n">array_to_image</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="o">**</span><span class="n">array_args</span><span class="p">)</span>
 
         <span class="n">tile_layer</span><span class="p">,</span> <span class="n">tile_client</span> <span class="o">=</span> <span class="n">get_local_tile_layer</span><span class="p">(</span>
             <span class="n">source</span><span class="p">,</span>
-            <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span>
-            <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
+            <span class="n">indexes</span><span class="o">=</span><span class="n">indexes</span><span class="p">,</span>
+            <span class="n">colormap</span><span class="o">=</span><span class="n">colormap</span><span class="p">,</span>
             <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
             <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
             <span class="n">nodata</span><span class="o">=</span><span class="n">nodata</span><span class="p">,</span>
@@ -9312,7 +9320,6 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
         <span class="n">tile_layer</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="n">visible</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tile_layer</span><span class="p">)</span>
-
         <span class="n">bounds</span> <span class="o">=</span> <span class="n">tile_client</span><span class="o">.</span><span class="n">bounds</span><span class="p">()</span>  <span class="c1"># [ymin, ymax, xmin, xmax]</span>
         <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
@@ -9329,12 +9336,11 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cog_layer_dict&quot;</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">cog_layer_dict</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">band_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tile_client</span><span class="o">.</span><span class="n">metadata</span><span class="p">()[</span><span class="s2">&quot;bands&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;tile_layer&quot;</span><span class="p">:</span> <span class="n">tile_layer</span><span class="p">,</span>
             <span class="s2">&quot;tile_client&quot;</span><span class="p">:</span> <span class="n">tile_client</span><span class="p">,</span>
-            <span class="s2">&quot;band&quot;</span><span class="p">:</span> <span class="n">band</span><span class="p">,</span>
-            <span class="s2">&quot;band_names&quot;</span><span class="p">:</span> <span class="n">band_names</span><span class="p">,</span>
+            <span class="s2">&quot;indexes&quot;</span><span class="p">:</span> <span class="n">indexes</span><span class="p">,</span>
+            <span class="s2">&quot;band_names&quot;</span><span class="p">:</span> <span class="n">tile_client</span><span class="o">.</span><span class="n">band_names</span><span class="p">,</span>
             <span class="s2">&quot;bounds&quot;</span><span class="p">:</span> <span class="n">bounds</span><span class="p">,</span>
             <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;LOCAL&quot;</span><span class="p">,</span>
         <span class="p">}</span>
@@ -12727,6 +12733,7 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 <span class="sd">        titiler_endpoint (str, optional): Titiler endpoint. Defaults to &quot;https://titiler.xyz&quot;.</span>
 <span class="sd">        **kwargs: Arbitrary keyword arguments, including bidx, expression, nodata, unscale, resampling, rescale, color_formula, colormap, colormap_name, return_mask. See https://developmentseed.org/titiler/endpoints/cog/ and https://cogeotiff.github.io/rio-tiler/colormap/. To select a certain bands, use bidx=[1, 2, 3]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">tile_url</span> <span class="o">=</span> <span class="n">cog_tile</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">bands</span><span class="p">,</span> <span class="n">titiler_endpoint</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="n">bounds</span> <span class="o">=</span> <span class="n">cog_bounds</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">titiler_endpoint</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">add_tile_layer</span><span class="p">(</span><span class="n">tile_url</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attribution</span><span class="p">,</span> <span class="n">opacity</span><span class="p">,</span> <span class="n">shown</span><span class="p">)</span>
@@ -17850,7 +17857,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
 
 
 <h3 id="geemap.geemap.Map.add_raster" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">add_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s1">&#39;Local COG&#39;</span><span class="p">,</span> <span class="n">zoom_to_layer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">add_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">indexes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">layer_name</span><span class="o">=</span><span class="s1">&#39;Raster&#39;</span><span class="p">,</span> <span class="n">zoom_to_layer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">array_args</span><span class="o">=</span><span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#geemap.geemap.Map.add_raster" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -17884,15 +17891,15 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
         <td><em>required</em></td>
       </tr>
       <tr>
-        <td><code>band</code></td>
+        <td><code>indexes</code></td>
         <td><code>int</code></td>
-        <td><p>The band to use. Band indexing starts at 1. Defaults to None.</p></td>
+        <td><p>The band(s) to use. Band indexing starts at 1. Defaults to None.</p></td>
         <td><code>None</code></td>
       </tr>
       <tr>
-        <td><code>palette</code></td>
+        <td><code>colormap</code></td>
         <td><code>str</code></td>
-        <td><p>The name of the color palette from <code>palettable</code> to use when plotting a single band. See https://jiffyclub.github.io/palettable. Default is greyscale</p></td>
+        <td><p>The name of the colormap from <code>matplotlib</code> to use when plotting a single band. See https://matplotlib.org/stable/gallery/color/colormap_reference.html. Default is greyscale.</p></td>
         <td><code>None</code></td>
       </tr>
       <tr>
@@ -17922,8 +17929,8 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
       <tr>
         <td><code>layer_name</code></td>
         <td><code>str</code></td>
-        <td><p>The layer name to use. Defaults to 'Local COG'.</p></td>
-        <td><code>&#39;Local COG&#39;</code></td>
+        <td><p>The layer name to use. Defaults to 'Raster'.</p></td>
+        <td><code>&#39;Raster&#39;</code></td>
       </tr>
       <tr>
         <td><code>zoom_to_layer</code></td>
@@ -17937,6 +17944,12 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
         <td><p>Whether the layer is visible. Defaults to True.</p></td>
         <td><code>True</code></td>
       </tr>
+      <tr>
+        <td><code>array_args</code></td>
+        <td><code>dict</code></td>
+        <td><p>Additional arguments to pass to <code>array_to_memory_file</code> when reading the raster. Defaults to {}.</p></td>
+        <td><code>{}</code></td>
+      </tr>
   </tbody>
 </table>
         <details class="quote">
@@ -17944,15 +17957,16 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_raster</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">source</span><span class="p">,</span>
-    <span class="n">band</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">palette</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">indexes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">colormap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">vmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">nodata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">attribution</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Local COG&quot;</span><span class="p">,</span>
+    <span class="n">layer_name</span><span class="o">=</span><span class="s2">&quot;Raster&quot;</span><span class="p">,</span>
     <span class="n">zoom_to_layer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">array_args</span><span class="o">=</span><span class="p">{},</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Add a local raster dataset to the map.</span>
@@ -17965,21 +17979,27 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 
 <span class="sd">    Args:</span>
 <span class="sd">        source (str): The path to the GeoTIFF file or the URL of the Cloud Optimized GeoTIFF.</span>
-<span class="sd">        band (int, optional): The band to use. Band indexing starts at 1. Defaults to None.</span>
-<span class="sd">        palette (str, optional): The name of the color palette from `palettable` to use when plotting a single band. See https://jiffyclub.github.io/palettable. Default is greyscale</span>
+<span class="sd">        indexes (int, optional): The band(s) to use. Band indexing starts at 1. Defaults to None.</span>
+<span class="sd">        colormap (str, optional): The name of the colormap from `matplotlib` to use when plotting a single band. See https://matplotlib.org/stable/gallery/color/colormap_reference.html. Default is greyscale.</span>
 <span class="sd">        vmin (float, optional): The minimum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
 <span class="sd">        vmax (float, optional): The maximum value to use when colormapping the palette when plotting a single band. Defaults to None.</span>
 <span class="sd">        nodata (float, optional): The value from the band to use to interpret as not valid data. Defaults to None.</span>
 <span class="sd">        attribution (str, optional): Attribution for the source raster. This defaults to a message about it being a local file.. Defaults to None.</span>
-<span class="sd">        layer_name (str, optional): The layer name to use. Defaults to &#39;Local COG&#39;.</span>
+<span class="sd">        layer_name (str, optional): The layer name to use. Defaults to &#39;Raster&#39;.</span>
 <span class="sd">        zoom_to_layer (bool, optional): Whether to zoom to the extent of the layer. Defaults to True.</span>
 <span class="sd">        visible (bool, optional): Whether the layer is visible. Defaults to True.</span>
+<span class="sd">        array_args (dict, optional): Additional arguments to pass to `array_to_memory_file` when reading the raster. Defaults to {}.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">):</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">array_to_image</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="o">**</span><span class="n">array_args</span><span class="p">)</span>
 
     <span class="n">tile_layer</span><span class="p">,</span> <span class="n">tile_client</span> <span class="o">=</span> <span class="n">get_local_tile_layer</span><span class="p">(</span>
         <span class="n">source</span><span class="p">,</span>
-        <span class="n">band</span><span class="o">=</span><span class="n">band</span><span class="p">,</span>
-        <span class="n">palette</span><span class="o">=</span><span class="n">palette</span><span class="p">,</span>
+        <span class="n">indexes</span><span class="o">=</span><span class="n">indexes</span><span class="p">,</span>
+        <span class="n">colormap</span><span class="o">=</span><span class="n">colormap</span><span class="p">,</span>
         <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span>
         <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span>
         <span class="n">nodata</span><span class="o">=</span><span class="n">nodata</span><span class="p">,</span>
@@ -17991,7 +18011,6 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
     <span class="n">tile_layer</span><span class="o">.</span><span class="n">visible</span> <span class="o">=</span> <span class="n">visible</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tile_layer</span><span class="p">)</span>
-
     <span class="n">bounds</span> <span class="o">=</span> <span class="n">tile_client</span><span class="o">.</span><span class="n">bounds</span><span class="p">()</span>  <span class="c1"># [ymin, ymax, xmin, xmax]</span>
     <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
@@ -18008,12 +18027,11 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;cog_layer_dict&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cog_layer_dict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">band_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tile_client</span><span class="o">.</span><span class="n">metadata</span><span class="p">()[</span><span class="s2">&quot;bands&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;tile_layer&quot;</span><span class="p">:</span> <span class="n">tile_layer</span><span class="p">,</span>
         <span class="s2">&quot;tile_client&quot;</span><span class="p">:</span> <span class="n">tile_client</span><span class="p">,</span>
-        <span class="s2">&quot;band&quot;</span><span class="p">:</span> <span class="n">band</span><span class="p">,</span>
-        <span class="s2">&quot;band_names&quot;</span><span class="p">:</span> <span class="n">band_names</span><span class="p">,</span>
+        <span class="s2">&quot;indexes&quot;</span><span class="p">:</span> <span class="n">indexes</span><span class="p">,</span>
+        <span class="s2">&quot;band_names&quot;</span><span class="p">:</span> <span class="n">tile_client</span><span class="o">.</span><span class="n">band_names</span><span class="p">,</span>
         <span class="s2">&quot;bounds&quot;</span><span class="p">:</span> <span class="n">bounds</span><span class="p">,</span>
         <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;LOCAL&quot;</span><span class="p">,</span>
     <span class="p">}</span>
