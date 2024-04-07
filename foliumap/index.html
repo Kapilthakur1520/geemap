@@ -7007,7 +7007,7 @@ Map            (<span title="folium.folium.Map">Map</span>)
             <span class="n">return_client</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">tile_layer</span><span class="p">)</span>
+        <span class="n">tile_layer</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="n">bounds</span> <span class="o">=</span> <span class="n">tile_client</span><span class="o">.</span><span class="n">bounds</span><span class="p">()</span>  <span class="c1"># [ymin, ymax, xmin, xmax]</span>
         <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span>
@@ -13824,7 +13824,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
         <span class="n">return_client</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">tile_layer</span><span class="p">)</span>
+    <span class="n">tile_layer</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="n">bounds</span> <span class="o">=</span> <span class="n">tile_client</span><span class="o">.</span><span class="n">bounds</span><span class="p">()</span>  <span class="c1"># [ymin, ymax, xmin, xmax]</span>
     <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span>
