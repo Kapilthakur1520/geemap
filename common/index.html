@@ -39917,7 +39917,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
 
 
 <h2 id="geemap.common.netcdf_to_ee" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">netcdf_to_ee</span><span class="p">(</span><span class="n">nc_file</span><span class="p">,</span> <span class="n">var_names</span><span class="p">,</span> <span class="n">band_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="s1">&#39;lat&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">netcdf_to_ee</span><span class="p">(</span><span class="n">nc_file</span><span class="p">,</span> <span class="n">var_names</span><span class="p">,</span> <span class="n">band_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></code>
 
 
 <a href="#geemap.common.netcdf_to_ee" class="headerlink" title="Permanent link">&para;</a></h2>
@@ -39967,6 +39967,12 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
         <td><p>the name of the latitude variable in the netCDF file. Defaults to "lat"</p></td>
         <td><code>&#39;lat&#39;</code></td>
       </tr>
+      <tr>
+        <td><code>decimal</code></td>
+        <td><code>int</code></td>
+        <td><p>the number of decimal places to round the longitude and latitude values to. Defaults to 2.</p></td>
+        <td><code>2</code></td>
+      </tr>
   </tbody>
 </table>
 <p><strong>Returns:</strong></p>
@@ -39986,7 +39992,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
 </table>
         <details class="quote">
           <summary>Source code in <code>geemap/common.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">netcdf_to_ee</span><span class="p">(</span><span class="n">nc_file</span><span class="p">,</span> <span class="n">var_names</span><span class="p">,</span> <span class="n">band_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="s2">&quot;lat&quot;</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">netcdf_to_ee</span><span class="p">(</span><span class="n">nc_file</span><span class="p">,</span> <span class="n">var_names</span><span class="p">,</span> <span class="n">band_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lon</span><span class="o">=</span><span class="s2">&quot;lon&quot;</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="s2">&quot;lat&quot;</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates an ee.Image from netCDF variables band_names that are read from nc_file. Currently only supports variables in a regular longitude/latitude grid (EPSG:4326).</span>
 
@@ -39996,6 +40002,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
 <span class="sd">        band_names (list, optional): if given, the bands are renamed to band_names. Defaults to the original var_names</span>
 <span class="sd">        lon (str, optional): the name of the longitude variable in the netCDF file. Defaults to &quot;lon&quot;</span>
 <span class="sd">        lat (str, optional): the name of the latitude variable in the netCDF file. Defaults to &quot;lat&quot;</span>
+<span class="sd">        decimal (int, optional): the number of decimal places to round the longitude and latitude values to. Defaults to 2.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        image: An ee.Image</span>
@@ -40010,6 +40017,12 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
         <span class="p">)</span>
 
     <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+
+    <span class="k">def</span> <span class="nf">most_common_value</span><span class="p">(</span><span class="n">lst</span><span class="p">):</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+        <span class="n">most_common</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="nb">format</span><span class="p">(</span><span class="n">most_common</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="n">decimal</span><span class="si">}</span><span class="s2">f&quot;</span><span class="p">))</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nc_file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -40030,10 +40043,12 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = f&#39;{os.environ[&#39;JUP
 
         <span class="n">dim_lon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ediff1d</span><span class="p">(</span><span class="n">lon_data</span><span class="p">))</span>
         <span class="n">dim_lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ediff1d</span><span class="p">(</span><span class="n">lat_data</span><span class="p">))</span>
+        <span class="n">dim_lon</span> <span class="o">=</span> <span class="p">[</span><span class="n">most_common_value</span><span class="p">(</span><span class="n">dim_lon</span><span class="p">)]</span>
+        <span class="n">dim_lat</span> <span class="o">=</span> <span class="p">[</span><span class="n">most_common_value</span><span class="p">(</span><span class="n">dim_lat</span><span class="p">)]</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dim_lon</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dim_lat</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The netCDF file is not a regular longitude/latitude grid&quot;</span><span class="p">)</span>
-            <span class="k">return</span>
+        <span class="c1"># if (len(dim_lon) != 1) or (len(dim_lat) != 1):</span>
+        <span class="c1">#     print(&quot;The netCDF file is not a regular longitude/latitude grid&quot;)</span>
+        <span class="c1">#     return</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
