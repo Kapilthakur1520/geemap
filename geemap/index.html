@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -7143,15 +7143,6 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
         <span class="k">if</span> <span class="s2">&quot;max_zoom&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;max_zoom&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">24</span>
 
-        <span class="c1"># Use any basemap available through the basemap module, such as &#39;ROADMAP&#39;, &#39;OpenTopoMap&#39;</span>
-        <span class="k">if</span> <span class="s2">&quot;basemap&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_basemap</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">])</span>
-            <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_basemap</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">])</span>
-                <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;add_google_map&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;basemap&quot;</span><span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">_xyz_dict</span> <span class="o">=</span> <span class="n">get_xyz_dict</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">baseclass</span> <span class="o">=</span> <span class="s2">&quot;ipyleaflet&quot;</span>
@@ -7441,12 +7432,14 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 
     <span class="n">getScale</span> <span class="o">=</span> <span class="n">get_scale</span>
 
-    <span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="s2">&quot;ROADMAP&quot;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ROADMAP&quot;</span><span class="p">,</span> <span class="n">show</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a basemap to the map.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            basemap (str, optional): Can be one of string from basemaps. Defaults to &#39;ROADMAP&#39;.</span>
-<span class="sd">            visible (bool, optional): Whether the basemap is visible or not. Defaults to True.</span>
+<span class="sd">            show (bool, optional): Whether the basemap is visible or not. Defaults to True.</span>
 <span class="sd">            **kwargs: Keyword arguments for the TileLayer.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="kn">import</span> <span class="nn">xyzservices</span>
@@ -7454,21 +7447,11 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
         <span class="k">try</span><span class="p">:</span>
             <span class="n">layer_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_layer_names</span><span class="p">()</span>
 
-            <span class="n">map_dict</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;ROADMAP&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldStreetMap&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;SATELLITE&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;TERRAIN&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldTopoMap&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;HYBRID&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">,</span>
-            <span class="p">}</span>
-
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemap</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">basemap</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">map_dict</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">basemap</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
-                        <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-                            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">basemap</span>
-                        <span class="n">basemap</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">basemap</span> <span class="o">=</span> <span class="n">map_dict</span><span class="p">[</span><span class="n">basemap</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+                <span class="k">for</span> <span class="n">map_name</span><span class="p">,</span> <span class="n">tile_provider</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_available_basemaps</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">basemap</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="n">map_name</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span>
+                        <span class="n">basemap</span> <span class="o">=</span> <span class="n">tile_provider</span>
+                        <span class="k">break</span>
 
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemap</span><span class="p">,</span> <span class="n">xyzservices</span><span class="o">.</span><span class="n">TileProvider</span><span class="p">):</span>
                 <span class="n">name</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">name</span>
@@ -7976,18 +7959,13 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
                     <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">zoom_to_bounds</span><span class="p">(</span><span class="n">bounds</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">add_basemap_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add_basemap_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add the Basemap GUI to the map.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            value (str): The default value from basemaps to select. Defaults to &quot;OpenStreetMap&quot;.</span>
 <span class="sd">            position (str, optional): The position of the Inspector GUI. Defaults to &quot;topright&quot;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_add_basemap_selector</span><span class="p">(</span>
-            <span class="n">position</span><span class="p">,</span> <span class="n">basemaps</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">basemaps</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="n">basemap_selector</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basemap_selector</span><span class="p">:</span>
-            <span class="n">basemap_selector</span><span class="o">.</span><span class="n">on_basemap_changed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_basemap_changed</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_add_basemap_selector</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">position</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">add_draw_control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topleft&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a draw control to the map</span>
@@ -12064,15 +12042,6 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
     <span class="k">if</span> <span class="s2">&quot;max_zoom&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;max_zoom&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">24</span>
 
-    <span class="c1"># Use any basemap available through the basemap module, such as &#39;ROADMAP&#39;, &#39;OpenTopoMap&#39;</span>
-    <span class="k">if</span> <span class="s2">&quot;basemap&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">check_basemap</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">])</span>
-        <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">basemaps</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_basemap</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;basemap&quot;</span><span class="p">])</span>
-            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;add_google_map&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;basemap&quot;</span><span class="p">)</span>
-
     <span class="bp">self</span><span class="o">.</span><span class="n">_xyz_dict</span> <span class="o">=</span> <span class="n">get_xyz_dict</span><span class="p">()</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">baseclass</span> <span class="o">=</span> <span class="s2">&quot;ipyleaflet&quot;</span>
@@ -12392,10 +12361,10 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
         <td><code>&#39;ROADMAP&#39;</code></td>
       </tr>
       <tr>
-        <td><code>visible</code></td>
+        <td><code>show</code></td>
         <td><code>bool</code></td>
         <td><p>Whether the basemap is visible or not. Defaults to True.</p></td>
-        <td><em>required</em></td>
+        <td><code>True</code></td>
       </tr>
       <tr>
         <td><code>**kwargs</code></td>
@@ -12407,12 +12376,14 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 </table>
         <details class="quote">
           <summary>Source code in <code>geemap/geemap.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="s2">&quot;ROADMAP&quot;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;ROADMAP&quot;</span><span class="p">,</span> <span class="n">show</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds a basemap to the map.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        basemap (str, optional): Can be one of string from basemaps. Defaults to &#39;ROADMAP&#39;.</span>
-<span class="sd">        visible (bool, optional): Whether the basemap is visible or not. Defaults to True.</span>
+<span class="sd">        show (bool, optional): Whether the basemap is visible or not. Defaults to True.</span>
 <span class="sd">        **kwargs: Keyword arguments for the TileLayer.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">xyzservices</span>
@@ -12420,21 +12391,11 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
     <span class="k">try</span><span class="p">:</span>
         <span class="n">layer_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_layer_names</span><span class="p">()</span>
 
-        <span class="n">map_dict</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;ROADMAP&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldStreetMap&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;SATELLITE&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;TERRAIN&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldTopoMap&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;HYBRID&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldImagery&quot;</span><span class="p">,</span>
-        <span class="p">}</span>
-
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemap</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">basemap</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">map_dict</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">basemap</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="s2">&quot;name&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-                        <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">basemap</span>
-                    <span class="n">basemap</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">basemap</span> <span class="o">=</span> <span class="n">map_dict</span><span class="p">[</span><span class="n">basemap</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+            <span class="k">for</span> <span class="n">map_name</span><span class="p">,</span> <span class="n">tile_provider</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_available_basemaps</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">basemap</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="n">map_name</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span>
+                    <span class="n">basemap</span> <span class="o">=</span> <span class="n">tile_provider</span>
+                    <span class="k">break</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemap</span><span class="p">,</span> <span class="n">xyzservices</span><span class="o">.</span><span class="n">TileProvider</span><span class="p">):</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">name</span>
@@ -12488,7 +12449,7 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 
 
 <h3 id="geemap.geemap.Map.add_basemap_widget" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">add_basemap_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;OpenStreetMap&#39;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s1">&#39;topright&#39;</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">add_basemap_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s1">&#39;topright&#39;</span><span class="p">)</span></code>
 
 
 <a href="#geemap.geemap.Map.add_basemap_widget" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -12509,12 +12470,6 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
   </thead>
   <tbody>
       <tr>
-        <td><code>value</code></td>
-        <td><code>str</code></td>
-        <td><p>The default value from basemaps to select. Defaults to "OpenStreetMap".</p></td>
-        <td><code>&#39;OpenStreetMap&#39;</code></td>
-      </tr>
-      <tr>
         <td><code>position</code></td>
         <td><code>str</code></td>
         <td><p>The position of the Inspector GUI. Defaults to "topright".</p></td>
@@ -12524,18 +12479,13 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 </table>
         <details class="quote">
           <summary>Source code in <code>geemap/geemap.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_basemap_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_basemap_widget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="s2">&quot;topright&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Add the Basemap GUI to the map.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        value (str): The default value from basemaps to select. Defaults to &quot;OpenStreetMap&quot;.</span>
 <span class="sd">        position (str, optional): The position of the Inspector GUI. Defaults to &quot;topright&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_add_basemap_selector</span><span class="p">(</span>
-        <span class="n">position</span><span class="p">,</span> <span class="n">basemaps</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">basemaps</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span>
-    <span class="p">)</span>
-    <span class="k">if</span> <span class="n">basemap_selector</span> <span class="o">:=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_basemap_selector</span><span class="p">:</span>
-        <span class="n">basemap_selector</span><span class="o">.</span><span class="n">on_basemap_changed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_on_basemap_changed</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_add_basemap_selector</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">position</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
@@ -25075,7 +25025,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="../js/timeago.min.js"></script>
       

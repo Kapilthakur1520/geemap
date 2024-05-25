@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -2261,6 +2261,15 @@
   <a href="#geemap.common.get_geometry_coords" class="md-nav__link">
     <span class="md-ellipsis">
       get_geometry_coords()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.get_google_maps_api_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_google_maps_api_key()
     </span>
   </a>
   
@@ -9323,6 +9332,15 @@
   <a href="#geemap.common.get_geometry_coords" class="md-nav__link">
     <span class="md-ellipsis">
       get_geometry_coords()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geemap.common.get_google_maps_api_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_google_maps_api_key()
     </span>
   </a>
   
@@ -31771,6 +31789,85 @@ Source code adapted from https://github.com/mapbox/rasterio/blob/master/rasterio
 
 
 
+<h2 id="geemap.common.get_google_maps_api_key" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_google_maps_api_key</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;GOOGLE_MAPS_API_KEY&#39;</span><span class="p">)</span></code>
+
+
+<a href="#geemap.common.get_google_maps_api_key" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Retrieves the Google Maps API key from the environment or Colab user data.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>key</code></td>
+        <td><code>str</code></td>
+        <td><p>The name of the environment variable or Colab user
+data key where the API key is stored. Defaults to
+'GOOGLE_MAPS_API_KEY'.</p></td>
+        <td><code>&#39;GOOGLE_MAPS_API_KEY&#39;</code></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>str</code></td>
+      <td><p>The API key, or None if it could not be found.</p></td>
+    </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>geemap/common.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_google_maps_api_key</span><span class="p">(</span><span class="n">key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;GOOGLE_MAPS_API_KEY&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves the Google Maps API key from the environment or Colab user data.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        key (str, optional): The name of the environment variable or Colab user</span>
+<span class="sd">            data key where the API key is stored. Defaults to</span>
+<span class="sd">            &#39;GOOGLE_MAPS_API_KEY&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: The API key, or None if it could not be found.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">in_colab_shell</span><span class="p">():</span>
+        <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">userdata</span>
+
+        <span class="k">if</span> <span class="n">api_key</span> <span class="o">:=</span> <span class="n">userdata</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">api_key</span>
+
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
 <h2 id="geemap.common.get_image_collection_thumbnails" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">get_image_collection_thumbnails</span><span class="p">(</span><span class="n">ee_object</span><span class="p">,</span> <span class="n">out_dir</span><span class="p">,</span> <span class="n">vis_params</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
 
@@ -52590,7 +52687,7 @@ If not provided, the CRS is inferred from the Dataset's attributes ('crs' attrib
     <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      <script src="../assets/javascripts/bundle.081f42fc.min.js"></script>
       
         <script src="../js/timeago.min.js"></script>
       
