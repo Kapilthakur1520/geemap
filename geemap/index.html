@@ -1605,15 +1605,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#geemap.geemap.Map.getBounds" class="md-nav__link">
-    <span class="md-ellipsis">
-      getBounds()
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#geemap.geemap.Map.getScale" class="md-nav__link">
     <span class="md-ellipsis">
       getScale()
@@ -6471,15 +6462,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#geemap.geemap.Map.getBounds" class="md-nav__link">
-    <span class="md-ellipsis">
-      getBounds()
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#geemap.geemap.Map.getScale" class="md-nav__link">
     <span class="md-ellipsis">
       getScale()
@@ -8188,17 +8170,7 @@ Map            (<a class="autorefs autorefs-internal" title="geemap.core.Map" hr
 <span class="sd">        Returns:</span>
 <span class="sd">            list | dict: A list in the format [west, south, east, north] in degrees.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
-        <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
-
-        <span class="k">if</span> <span class="n">asGeoJSON</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BBox</span><span class="p">(</span>
-                <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-            <span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">coords</span>
-
-    <span class="n">getBounds</span> <span class="o">=</span> <span class="n">get_bounds</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_bounds</span><span class="p">(</span><span class="n">as_geo_json</span><span class="o">=</span><span class="n">asGeoJSON</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">add_cog_layer</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -20926,82 +20898,6 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 
 
 
-<h3 id="geemap.geemap.Map.getBounds" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">getBounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asGeoJSON</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
-
-
-<a href="#geemap.geemap.Map.getBounds" class="headerlink" title="Permanent link">&para;</a></h3>
-
-    <div class="doc doc-contents ">
-
-      <p>Returns the bounds of the current map view, as a list in the format [west, south, east, north] in degrees.</p>
-
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><code>asGeoJSON</code></td>
-        <td><code>bool</code></td>
-        <td><p>If true, returns map bounds as GeoJSON. Defaults to False.</p></td>
-        <td><code>False</code></td>
-      </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>list | dict</code></td>
-      <td><p>A list in the format [west, south, east, north] in degrees.</p></td>
-    </tr>
-  </tbody>
-</table>
-        <details class="quote">
-          <summary>Source code in <code>geemap/geemap.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_bounds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">asGeoJSON</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns the bounds of the current map view, as a list in the format [west, south, east, north] in degrees.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        asGeoJSON (bool, optional): If true, returns map bounds as GeoJSON. Defaults to False.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        list | dict: A list in the format [west, south, east, north] in degrees.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
-    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
-
-    <span class="k">if</span> <span class="n">asGeoJSON</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BBox</span><span class="p">(</span>
-            <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">coords</span>
-</code></pre></div>
-        </details>
-    </div>
-
-  </div>
-
-
-
-  <div class="doc doc-object doc-method">
-
-
-
 <h3 id="geemap.geemap.Map.getScale" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">getScale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
 
@@ -21103,15 +20999,7 @@ os.environ[&#39;LOCALTILESERVER_CLIENT_PREFIX&#39;] = &#39;proxy/{port}&#39;
 <span class="sd">    Returns:</span>
 <span class="sd">        list | dict: A list in the format [west, south, east, north] in degrees.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">bounds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bounds</span>
-    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
-
-    <span class="k">if</span> <span class="n">asGeoJSON</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BBox</span><span class="p">(</span>
-            <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-        <span class="p">)</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">coords</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_bounds</span><span class="p">(</span><span class="n">as_geo_json</span><span class="o">=</span><span class="n">asGeoJSON</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
