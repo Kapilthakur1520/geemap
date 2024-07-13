@@ -26420,10 +26420,9 @@ to use the Earth Engine High-Volume platform. Defaults to {}.</p></td>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;ee_object must be an ee.FeatureCollection&quot;</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">property_names</span> <span class="o">=</span> <span class="n">ee_object</span><span class="o">.</span><span class="n">first</span><span class="p">()</span><span class="o">.</span><span class="n">propertyNames</span><span class="p">()</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">remove_geom</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">ee_object</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
-                <span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">ee</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">toDictionary</span><span class="p">(</span><span class="n">property_names</span><span class="p">))</span>
+                <span class="k">lambda</span> <span class="n">f</span><span class="p">:</span> <span class="n">ee</span><span class="o">.</span><span class="n">Feature</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">toDictionary</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">propertyNames</span><span class="p">()</span><span class="o">.</span><span class="n">sort</span><span class="p">()))</span>
             <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">ee_object</span>
