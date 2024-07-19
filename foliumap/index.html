@@ -6686,12 +6686,16 @@ Map            (<span title="folium.folium.Map">Map</span>)
 
     <span class="n">set_options</span> <span class="o">=</span> <span class="n">setOptions</span>
 
-    <span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="s2">&quot;ROADMAP&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;HYBRID&quot;</span><span class="p">,</span> <span class="n">show</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a basemap to the map.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            basemap (str, optional): Can be one of string from ee_basemaps. Defaults to &#39;ROADMAP&#39;.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">xyzservices</span>
+
         <span class="k">try</span><span class="p">:</span>
             <span class="n">map_dict</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">&quot;ROADMAP&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldStreetMap&quot;</span><span class="p">,</span>
@@ -6711,6 +6715,46 @@ Map            (<span title="folium.folium.Map">Map</span>)
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">basemap</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
                         <span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemap</span><span class="p">,</span> <span class="n">xyzservices</span><span class="o">.</span><span class="n">TileProvider</span><span class="p">):</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">name</span>
+                    <span class="n">url</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">build_url</span><span class="p">()</span>
+                    <span class="n">attribution</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">attribution</span>
+                    <span class="k">if</span> <span class="s2">&quot;max_zoom&quot;</span> <span class="ow">in</span> <span class="n">basemap</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                        <span class="n">max_zoom</span> <span class="o">=</span> <span class="n">basemap</span><span class="p">[</span><span class="s2">&quot;max_zoom&quot;</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">max_zoom</span> <span class="o">=</span> <span class="mi">22</span>
+                    <span class="n">layer</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span>
+                        <span class="n">tiles</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+                        <span class="n">attr</span><span class="o">=</span><span class="n">attribution</span><span class="p">,</span>
+                        <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                        <span class="n">max_zoom</span><span class="o">=</span><span class="n">max_zoom</span><span class="p">,</span>
+                        <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">control</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">,</span>
+                        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+
+                    <span class="n">arc_add_layer</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+                <span class="k">elif</span> <span class="n">basemap</span> <span class="ow">in</span> <span class="n">basemaps</span><span class="p">:</span>
+                    <span class="n">bmap</span> <span class="o">=</span> <span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span>
+                    <span class="n">bmap</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="n">show</span>
+                    <span class="n">bmap</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">],</span> <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">):</span>
+                        <span class="n">url</span> <span class="o">=</span> <span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span><span class="o">.</span><span class="n">tiles</span>
+                    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">],</span> <span class="n">folium</span><span class="o">.</span><span class="n">WmsTileLayer</span><span class="p">):</span>
+                        <span class="n">url</span> <span class="o">=</span> <span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span><span class="o">.</span><span class="n">url</span>
+                    <span class="n">arc_add_layer</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">basemap</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="s2">&quot;Basemap can only be one of the following: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basemaps</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
                 <span class="s2">&quot;Basemap can only be one of the following: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -9436,7 +9480,7 @@ Map            (<span title="folium.folium.Map">Map</span>)
 
 
 <h3 id="geemap.foliumap.Map.add_basemap" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">add_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="s1">&#39;ROADMAP&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">add_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="s1">&#39;HYBRID&#39;</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 
 <a href="#geemap.foliumap.Map.add_basemap" class="headerlink" title="Permanent link">&para;</a></h3>
@@ -9460,18 +9504,22 @@ Map            (<span title="folium.folium.Map">Map</span>)
         <td><code>basemap</code></td>
         <td><code>str</code></td>
         <td><p>Can be one of string from ee_basemaps. Defaults to 'ROADMAP'.</p></td>
-        <td><code>&#39;ROADMAP&#39;</code></td>
+        <td><code>&#39;HYBRID&#39;</code></td>
       </tr>
   </tbody>
 </table>
         <details class="quote">
           <summary>Source code in <code>geemap/foliumap.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="o">=</span><span class="s2">&quot;ROADMAP&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_basemap</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">basemap</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;HYBRID&quot;</span><span class="p">,</span> <span class="n">show</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds a basemap to the map.</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        basemap (str, optional): Can be one of string from ee_basemaps. Defaults to &#39;ROADMAP&#39;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">xyzservices</span>
+
     <span class="k">try</span><span class="p">:</span>
         <span class="n">map_dict</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;ROADMAP&quot;</span><span class="p">:</span> <span class="s2">&quot;Esri.WorldStreetMap&quot;</span><span class="p">,</span>
@@ -9491,6 +9539,46 @@ Map            (<span title="folium.folium.Map">Map</span>)
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">basemap</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
                     <span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemap</span><span class="p">,</span> <span class="n">xyzservices</span><span class="o">.</span><span class="n">TileProvider</span><span class="p">):</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">name</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">build_url</span><span class="p">()</span>
+                <span class="n">attribution</span> <span class="o">=</span> <span class="n">basemap</span><span class="o">.</span><span class="n">attribution</span>
+                <span class="k">if</span> <span class="s2">&quot;max_zoom&quot;</span> <span class="ow">in</span> <span class="n">basemap</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">max_zoom</span> <span class="o">=</span> <span class="n">basemap</span><span class="p">[</span><span class="s2">&quot;max_zoom&quot;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">max_zoom</span> <span class="o">=</span> <span class="mi">22</span>
+                <span class="n">layer</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span>
+                    <span class="n">tiles</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+                    <span class="n">attr</span><span class="o">=</span><span class="n">attribution</span><span class="p">,</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+                    <span class="n">max_zoom</span><span class="o">=</span><span class="n">max_zoom</span><span class="p">,</span>
+                    <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">control</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">show</span><span class="o">=</span><span class="n">show</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_layer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+
+                <span class="n">arc_add_layer</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">basemap</span> <span class="ow">in</span> <span class="n">basemaps</span><span class="p">:</span>
+                <span class="n">bmap</span> <span class="o">=</span> <span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span>
+                <span class="n">bmap</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="n">show</span>
+                <span class="n">bmap</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">],</span> <span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">):</span>
+                    <span class="n">url</span> <span class="o">=</span> <span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span><span class="o">.</span><span class="n">tiles</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">],</span> <span class="n">folium</span><span class="o">.</span><span class="n">WmsTileLayer</span><span class="p">):</span>
+                    <span class="n">url</span> <span class="o">=</span> <span class="n">basemaps</span><span class="p">[</span><span class="n">basemap</span><span class="p">]</span><span class="o">.</span><span class="n">url</span>
+                <span class="n">arc_add_layer</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">basemap</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span>
+                    <span class="s2">&quot;Basemap can only be one of the following: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basemaps</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
             <span class="s2">&quot;Basemap can only be one of the following: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
